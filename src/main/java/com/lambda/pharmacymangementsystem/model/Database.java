@@ -9,7 +9,7 @@ import java.sql.Connection;
  */
 public class Database {
     public Connection conn;
-    String databaseUrl = "jdbc:postgresql://localhost/lambda_pharmacy_db?user=postgres&password=postgres&ssl=true";
+    private static final String databaseUrl = "jdbc:postgresql://localhost/lambda_pharmacy_db?user=postgres&password=postgres&ssl=true";
 
     // create connection
     public Connection connectDatabase() {
