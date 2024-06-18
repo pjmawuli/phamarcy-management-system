@@ -12,16 +12,41 @@ import java.util.List;
  * @hidden rs: the result set returned from the query
  */
 public class SupplierFunctions {
-    Database db = new Database();
+    static Database db = new Database();
+
+    //    get all suppliers
+    public static List<SupplierEntity> getAllSuppliers() throws SQLException {
+        List<SupplierEntity> suppliers = new ArrayList<SupplierEntity>();
+//        use `try with resources` to automatically release the resources when done
+        try
+                (
+                        Connection conn = db.connectDatabase();
+                        Statement st = conn.createStatement()
+                ) {
+
+//            execute the query
+            ResultSet rs = st.executeQuery("SELECT * FROM suppliers");
+            while (rs.next()) {
+                SupplierEntity newSupplier = new SupplierEntity(rs.getInt("id"), rs.getString("name"), rs.getInt("contact"), rs.getString("location"), rs.getString("created_at"), rs.getString("updated_at"));
+                suppliers.add(newSupplier);
+            }
+            return suppliers;
+        } catch (Exception e) {
+//            TODO: handle errors properly
+            System.out.println("Could not update supplier");
+            e.printStackTrace();
+            throw e;
+        }
+    }
 
     // add one supplier
-    public void addOneSupplier(SupplierEntity supplier) throws SQLException {
+    public static void addOneSupplier(SupplierEntity supplier) throws SQLException {
 
 //        `use try with resources` to automatically release the resources when done
         try
                 (
                         Connection conn = db.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("INSERT INTO suppliers (name, contact, location) VALUES (?, ?, ?)");
+                        PreparedStatement st = conn.prepareStatement("INSERT INTO suppliers (name, contact, location) VALUES (?, ?, ?)")
                 ) {
 
 //            bind inputs
@@ -35,16 +60,17 @@ public class SupplierFunctions {
 //            TODO: handle errors properly
             System.out.println("Could not add supplier");
             e.printStackTrace();
+            throw e;
         }
     }
 
     //    get one supplier
-    public SupplierEntity getOneSupplier(int id) throws SQLException {
+    public static SupplierEntity getOneSupplier(int id) throws SQLException {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
                         Connection conn = db.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("SELECT * FROM suppliers WHERE id = ?");
+                        PreparedStatement st = conn.prepareStatement("SELECT * FROM suppliers WHERE id = ?")
                 ) {
 
 //            bind inputs
@@ -59,45 +85,19 @@ public class SupplierFunctions {
 //            TODO: handle errors properly
             System.out.println("Could not update supplier");
             e.printStackTrace();
+            throw e;
         }
         return null;
     }
-
-
-    //    get all suppliers
-    public List<SupplierEntity> getAllSuppliers() throws SQLException {
-        List<SupplierEntity> suppliers = new ArrayList<SupplierEntity>();
-//        use `try with resources` to automatically release the resources when done
-        try
-                (
-                        Connection conn = db.connectDatabase();
-                        Statement st = conn.createStatement();
-                ) {
-
-//            execute the query
-            ResultSet rs = st.executeQuery("SELECT * FROM suppliers");
-            while (rs.next()) {
-                SupplierEntity newSupplier = new SupplierEntity(rs.getInt("id"), rs.getString("name"), rs.getInt("contact"), rs.getString("location"), rs.getString("created_at"), rs.getString("updated_at"));
-                suppliers.add(newSupplier);
-            }
-            return suppliers;
-        } catch (Exception e) {
-//            TODO: handle errors properly
-            System.out.println("Could not update supplier");
-            e.printStackTrace();
-        }
-        return null;
-    }
-
 
     //    update one supplier
-    public void updateOneSupplier(int id, SupplierEntity supplier) throws SQLException {
+    public static void updateOneSupplier(int id, SupplierEntity supplier) throws SQLException {
 
 //        use `try with resources` to automatically release the resources when done
         try
                 (
                         Connection conn = db.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("UPDATE suppliers SET name = ?, contact = ?, location = ? WHERE id = ?");
+                        PreparedStatement st = conn.prepareStatement("UPDATE suppliers SET name = ?, contact = ?, location = ? WHERE id = ?")
                 ) {
 
 //            bind inputs
@@ -112,19 +112,20 @@ public class SupplierFunctions {
 //            TODO: handle errors properly
             System.out.println("Could not update supplier");
             e.printStackTrace();
+            throw e;
         }
     }
 
 
     //    delete one supplier
-    public void deleteOneSupplier(int id) throws SQLException {
+    public static void deleteOneSupplier(int id) throws SQLException {
 //        PreparedStatement st = null;
 
 //        use `try with resources` to automatically release the resources when done
         try
                 (
                         Connection conn = db.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("DELETE FROM suppliers WHERE id = ?");
+                        PreparedStatement st = conn.prepareStatement("DELETE FROM suppliers WHERE id = ?")
                 ) {
 
 //            bind inputs
@@ -136,6 +137,7 @@ public class SupplierFunctions {
 //            TODO: handle errors properly
             System.out.println("Could not update supplier");
             e.printStackTrace();
+            throw e;
         }
     }
 

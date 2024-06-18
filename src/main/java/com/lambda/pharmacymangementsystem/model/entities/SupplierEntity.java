@@ -61,7 +61,7 @@ public class SupplierEntity {
         return created_at;
     }
 
-    public void setCreatedAt() {
+    public void setCreatedAt(String created_at) {
         this.created_at = created_at;
     }
 
@@ -69,7 +69,7 @@ public class SupplierEntity {
         return updated_at;
     }
 
-    public void setUpdatedAt() {
+    public void setUpdatedAt(String updated_at) {
         this.updated_at = updated_at;
     }
 }
