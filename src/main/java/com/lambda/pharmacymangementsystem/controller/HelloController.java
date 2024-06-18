@@ -1,4 +1,4 @@
-package com.lambda.pharmacymangementsystem;
+package com.lambda.pharmacymangementsystem.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
