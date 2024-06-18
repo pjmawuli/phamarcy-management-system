@@ -6,11 +6,15 @@ public class SupplierEntity {
     private String name;
     private int contact;
     private String location;
+    private String created_at;
+    private String updated_at;
 
     //    default constructor with id
-    public SupplierEntity(int id, String name, int contact, String location) {
+    public SupplierEntity(int id, String name, int contact, String location, String created_at, String updated_at) {
         this(name, contact, location);
         this.id = id;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 
     //    define constructor
@@ -51,5 +55,21 @@ public class SupplierEntity {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getCreatedAt() {
+        return created_at;
+    }
+
+    public void setCreatedAt() {
+        this.created_at = created_at;
+    }
+
+    public String getUpdatedAt() {
+        return updated_at;
+    }
+
+    public void setUpdatedAt() {
+        this.updated_at = updated_at;
     }
 }

@@ -53,7 +53,7 @@ public class SupplierFunctions {
 //            execute the query
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                return new SupplierEntity(rs.getInt("id"), rs.getString("name"), rs.getInt("contact"), rs.getString("location"));
+                return new SupplierEntity(rs.getInt("id"), rs.getString("name"), rs.getInt("contact"), rs.getString("location"), rs.getString("created_at"), rs.getString("updated_at"));
             }
         } catch (Exception e) {
 //            TODO: handle errors properly
@@ -77,7 +77,7 @@ public class SupplierFunctions {
 //            execute the query
             ResultSet rs = st.executeQuery("SELECT * FROM suppliers");
             while (rs.next()) {
-                SupplierEntity newSupplier = new SupplierEntity(rs.getInt("id"), rs.getString("name"), rs.getInt("contact"), rs.getString("location"));
+                SupplierEntity newSupplier = new SupplierEntity(rs.getInt("id"), rs.getString("name"), rs.getInt("contact"), rs.getString("location"), rs.getString("created_at"), rs.getString("updated_at"));
                 suppliers.add(newSupplier);
             }
             return suppliers;
