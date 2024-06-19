@@ -1,11 +1,14 @@
 package com.lambda.pharmacymangementsystem.test;
 
 import com.lambda.pharmacymangementsystem.model.entities.DrugEntity;
+import com.lambda.pharmacymangementsystem.model.entities.DrugViewEntity;
 import com.lambda.pharmacymangementsystem.model.functions.DrugFunctions;
 import com.lambda.pharmacymangementsystem.utils.Drug;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class DrugFunctionsTest {
@@ -20,7 +23,8 @@ public class DrugFunctionsTest {
             System.out.println("4: Delete one drug");
             System.out.println("5: Get all drugs");
             System.out.println("6: Get recent drug code");
-            System.out.println("7: Exit");
+            System.out.println("7: Search drugs");
+            System.out.println("8: Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -50,6 +54,9 @@ public class DrugFunctionsTest {
                     testGetRecentDrugCode();
                     break;
                 case 7:
+                    testSearchDrugs();
+                    break;
+                case 8:
                     System.out.println("Exiting...");
                     scanner.close();
                     System.exit(0);
@@ -75,9 +82,9 @@ public class DrugFunctionsTest {
 
     private static void testGetOneDrug(int id) {
         try {
-            DrugEntity drug = DrugFunctions.getOneDrug(id);
+            DrugViewEntity drug = DrugFunctions.getOneDrug(id);
             if (drug != null) {
-                System.out.println("Drug found: " + drug);
+                System.out.println("Drug found: \n" + drug.toString());
             } else {
                 System.out.println("Drug not found.");
             }
@@ -114,13 +121,34 @@ public class DrugFunctionsTest {
         }
     }
 
+    private static void testSearchDrugs() {
+        try {
+            // Simulating search parameters (can be adjusted based on actual use case)
+            Map<String, Object> params = new HashMap<>();
+            params.put("drug_code", "01");
+
+            List<DrugViewEntity> drugs = DrugFunctions.searchDrugs(params);
+
+            if (!drugs.isEmpty()) {
+                System.out.println("Drugs found:");
+                for (DrugViewEntity drug : drugs) {
+                    System.out.println(drug.toString());
+                }
+            } else {
+                System.out.println("No drugs found.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static void testGetAllDrugs() {
         try {
-            List<DrugEntity> drugs = DrugFunctions.getAllDrugs();
+            List<DrugViewEntity> drugs = DrugFunctions.getAllDrugs();
             if (!drugs.isEmpty()) {
                 System.out.println("All drugs:");
-                for (DrugEntity drug : drugs) {
-                    System.out.println(drug.getDrugCode());
+                for (DrugViewEntity drug : drugs) {
+                    System.out.println("Drugs: \n" + drug.toString());
                 }
             } else {
                 System.out.println("No drugs found.");
