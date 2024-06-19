@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+
+<BorderPane fx:id="dashboardPane" prefHeight="720" prefWidth="1280" xmlns:fx="http://javafx.com/fxml" fx:controller="com.lambda.pharmacymangementsystem.controller.DashboardController">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Exit" onAction="#handleExit" />
+            </Menu>
+            <Menu text="Menu">
+                <MenuItem text="Suppliers" onAction="#showSuppliers" />
+                <MenuItem text="Drugs" onAction="#showDrugs" />
+                <MenuItem text="Purchase History" onAction="#showPurchaseHistory" />
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <Label text="Welcome to the Pharmacy Management System Dashboard" styleClass="label" />
+    </center>
+</BorderPane>

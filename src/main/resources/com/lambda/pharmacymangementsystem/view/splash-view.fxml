@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefWidth="720" prefHeight="1280" xmlns:fx="http://javafx.com/fxml" fx:controller="com.lambda.pharmacymangementsystem.controller.SplashScreenController" alignment="CENTER" spacing="20">
+    <Label text="Welcome to the Pharmacy Management System" styleClass="label" />
+    <Button fx:id="startButton" text="Start" onAction="#handleStartButton" styleClass="button" />
+</VBox>
