@@ -33,7 +33,7 @@ public class SupplierFunctions {
             return suppliers;
         } catch (Exception e) {
 //            TODO: handle errors properly
-            System.out.println("Could not update supplier");
+            System.out.println("Could not retrieve suppliers");
             e.printStackTrace();
             throw e;
         }
@@ -58,7 +58,7 @@ public class SupplierFunctions {
             st.executeUpdate();
         } catch (Exception e) {
 //            TODO: handle errors properly
-            System.out.println("Could not add supplier");
+            System.out.println("Could not add suppliers");
             e.printStackTrace();
             throw e;
         }
@@ -83,7 +83,7 @@ public class SupplierFunctions {
             }
         } catch (Exception e) {
 //            TODO: handle errors properly
-            System.out.println("Could not update supplier");
+            System.out.println("Could not retrieve supplier");
             e.printStackTrace();
             throw e;
         }
@@ -135,7 +135,7 @@ public class SupplierFunctions {
             st.executeUpdate();
         } catch (Exception e) {
 //            TODO: handle errors properly
-            System.out.println("Could not update supplier");
+            System.out.println("Could not delete supplier");
             e.printStackTrace();
             throw e;
         }

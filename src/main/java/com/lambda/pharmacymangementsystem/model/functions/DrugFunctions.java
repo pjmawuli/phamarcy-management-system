@@ -64,7 +64,7 @@ public class DrugFunctions {
             }
         } catch (Exception e) {
 //            TODO: handle errors properly
-            System.out.println("Could not update drug");
+            System.out.println("Could not retrieve drug");
             e.printStackTrace();
             throw e;
         }
@@ -95,7 +95,7 @@ public class DrugFunctions {
             return drugs;
         } catch (Exception e) {
 //            TODO: handle errors properly
-            System.out.println("Could not update drug");
+            System.out.println("Could not retrieve drugs");
             e.printStackTrace();
             throw e;
         }
@@ -155,5 +155,28 @@ public class DrugFunctions {
         }
     }
 
+
+    //    get recent drug code
+    public static String getRecentDrugCode() throws SQLException {
+//        use `try with resources` to automatically release the resources when done
+        try
+                (
+                        Connection conn = db.connectDatabase();
+                        PreparedStatement st = conn.prepareStatement("SELECT drug_code FROM drugs ORDER BY created_at DESC LIMIT 1")
+                ) {
+
+//            execute the query
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString("drug_code");
+            }
+        } catch (Exception e) {
+//            TODO: handle errors properly
+            System.out.println("Could not retrieve recent drug code");
+            e.printStackTrace();
+            throw e;
+        }
+        return "MED-00000";
+    }
 
 }
