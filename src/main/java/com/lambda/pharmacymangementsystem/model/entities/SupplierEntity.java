@@ -1,16 +1,18 @@
 package com.lambda.pharmacymangementsystem.model.entities;
 
 
+import java.time.LocalDateTime;
+
 public class SupplierEntity {
     private int id;
     private String name;
     private int contact;
     private String location;
-    private String created_at;
-    private String updated_at;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
 
     //    default constructor with id
-    public SupplierEntity(int id, String name, int contact, String location, String created_at, String updated_at) {
+    public SupplierEntity(int id, String name, int contact, String location, LocalDateTime created_at, LocalDateTime updated_at) {
         this(name, contact, location);
         this.id = id;
         this.created_at = created_at;
@@ -57,19 +59,19 @@ public class SupplierEntity {
         this.location = location;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return created_at;
     }
 
-    public void setCreatedAt(String created_at) {
+    public void setCreatedAt(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
-    public String getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updated_at;
     }
 
-    public void setUpdatedAt(String updated_at) {
+    public void setUpdatedAt(LocalDateTime updated_at) {
         this.updated_at = updated_at;
     }
 }

@@ -4,6 +4,7 @@ import com.lambda.pharmacymangementsystem.model.Database;
 import com.lambda.pharmacymangementsystem.model.entities.PurchaseEntity;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class PurchaseFunctions {
                         rs.getDouble("total_price"),
                         rs.getString("customer_name"),
                         rs.getInt("drug_id"),
-                        rs.getString("created_at")
+                        rs.getObject("created_at", LocalDateTime.class)
                 );
             }
         } catch (Exception e) {
@@ -96,7 +97,7 @@ public class PurchaseFunctions {
                         rs.getDouble("total_price"),
                         rs.getString("customer_name"),
                         rs.getInt("drug_id"),
-                        rs.getString("created_at"));
+                        rs.getObject("created_at", LocalDateTime.class));
                 purchases.add(newPurchase);
             }
             return purchases;

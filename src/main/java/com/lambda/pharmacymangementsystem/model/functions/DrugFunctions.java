@@ -4,6 +4,7 @@ import com.lambda.pharmacymangementsystem.model.Database;
 import com.lambda.pharmacymangementsystem.model.entities.DrugEntity;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,9 @@ public class DrugFunctions {
                         rs.getString("drug_code"),
                         rs.getInt("quantity"),
                         rs.getDouble("price"),
-                        rs.getInt("supplier_id"), rs.getString("created_at"), rs.getString("updated_at"));
+                        rs.getInt("supplier_id"),
+                        rs.getObject("created_at", LocalDateTime.class),
+                        rs.getObject("updated_at", LocalDateTime.class));
             }
         } catch (Exception e) {
 //            TODO: handle errors properly
@@ -89,7 +92,9 @@ public class DrugFunctions {
                         rs.getString("drug_code"),
                         rs.getInt("quantity"),
                         rs.getDouble("price"),
-                        rs.getInt("supplier_id"), rs.getString("created_at"), rs.getString("updated_at"));
+                        rs.getInt("supplier_id"),
+                        rs.getObject("created_at", LocalDateTime.class),
+                        rs.getObject("updated_at", LocalDateTime.class));
                 drugs.add(newDrug);
             }
             return drugs;

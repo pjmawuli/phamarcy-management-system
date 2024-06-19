@@ -4,6 +4,7 @@ import com.lambda.pharmacymangementsystem.model.Database;
 import com.lambda.pharmacymangementsystem.model.entities.SupplierEntity;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,13 @@ public class SupplierFunctions {
 //            execute the query
             ResultSet rs = st.executeQuery("SELECT * FROM suppliers");
             while (rs.next()) {
-                SupplierEntity newSupplier = new SupplierEntity(rs.getInt("id"), rs.getString("name"), rs.getInt("contact"), rs.getString("location"), rs.getString("created_at"), rs.getString("updated_at"));
+                SupplierEntity newSupplier = new SupplierEntity(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("contact"),
+                        rs.getString("location"),
+                        rs.getObject("created_at", LocalDateTime.class),
+                        rs.getObject("updated_at", LocalDateTime.class));
                 suppliers.add(newSupplier);
             }
             return suppliers;
@@ -79,7 +86,13 @@ public class SupplierFunctions {
 //            execute the query
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                return new SupplierEntity(rs.getInt("id"), rs.getString("name"), rs.getInt("contact"), rs.getString("location"), rs.getString("created_at"), rs.getString("updated_at"));
+                return new SupplierEntity(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("contact"),
+                        rs.getString("location"),
+                        rs.getObject("created_at", LocalDateTime.class),
+                        rs.getObject("updated_at", LocalDateTime.class));
             }
         } catch (Exception e) {
 //            TODO: handle errors properly

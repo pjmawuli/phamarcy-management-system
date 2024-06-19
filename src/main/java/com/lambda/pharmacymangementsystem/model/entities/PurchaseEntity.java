@@ -1,5 +1,7 @@
 package com.lambda.pharmacymangementsystem.model.entities;
 
+import java.time.LocalDateTime;
+
 public class PurchaseEntity {
     private int id;
     private String purchase_code;
@@ -7,10 +9,10 @@ public class PurchaseEntity {
     private double total_price;
     private String customer_name;
     private int drug_id;
-    private String created_at;
+    private LocalDateTime created_at;
 
     //    default constructor with id
-    public PurchaseEntity(int id, String purchase_code, int quantity, double total_price, String customer_name, int drug_id, String created_at) {
+    public PurchaseEntity(int id, String purchase_code, int quantity, double total_price, String customer_name, int drug_id, LocalDateTime created_at) {
         this(purchase_code, quantity, total_price, customer_name, drug_id);
         this.id = id;
         this.created_at = created_at;
@@ -74,11 +76,11 @@ public class PurchaseEntity {
         this.drug_id = drug_id;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return created_at;
     }
 
-    public void setCreatedAt(String created_at) {
+    public void setCreatedAt(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
