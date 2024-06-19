@@ -1,6 +1,7 @@
 package com.lambda.pharmacymangementsystem.model;
-import java.sql.DriverManager;
+
 import java.sql.Connection;
+import java.sql.DriverManager;
 
 /**
  * contains the connection details of the application and its underlying database (postgres) using JDBC
@@ -8,8 +9,8 @@ import java.sql.Connection;
  * reference: https://jdbc.postgresql.org/
  */
 public class Database {
+    private static final String databaseUrl = "jdbc:postgresql://localhost/lambda_pharmacy_db?user=postgres&password=postgres";
     public Connection conn;
-    private static final String databaseUrl = "jdbc:postgresql://localhost/lambda_pharmacy_db?user=postgres&password=postgres&ssl=true";
 
     // create connection
     public Connection connectDatabase() {

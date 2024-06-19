@@ -140,7 +140,7 @@ public class PurchaseFunctions {
         try
                 (
                         Connection conn = db.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("SELECT purchase_code FROM purchases ORDER BY created_at DESC LIMIT 1")
+                        PreparedStatement st = conn.prepareStatement("SELECT purchase_code FROM purchases ORDER BY purchase_code DESC LIMIT 1")
                 ) {
 
 //            execute the query

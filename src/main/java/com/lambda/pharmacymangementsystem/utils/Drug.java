@@ -9,15 +9,15 @@ public class Drug {
      * @param drugCode - the most recent drug code from memory
      * @return next unique drug code
      */
-    public static String generateNextPurchaseCode(String drugCode) {
+    public static String generateNextDrugCode(String drugCode) {
         String uniqueCode = drugCode.split("-")[1];
         String nextValue = "";
         boolean carry = true;
-        for (int i = uniqueCode.length() - 1; i > -1; i--) {
+        for (int i = uniqueCode.length() - 1; i >= 0; i--) {
             char current = uniqueCode.charAt(i);
             if (carry) {
                 char nextCharacter = getNextCharacter(current);
-                carry = nextCharacter == 0;
+                carry = nextCharacter == '0';
                 nextValue = nextCharacter + nextValue;
             } else {
                 nextValue = current + nextValue;

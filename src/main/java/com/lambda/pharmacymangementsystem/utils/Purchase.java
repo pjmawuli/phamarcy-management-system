@@ -13,11 +13,11 @@ public class Purchase {
         String uniqueCode = purchaseCode.split("-")[1];
         String nextValue = "";
         boolean carry = true;
-        for (int i = uniqueCode.length() - 1; i > -1; i--) {
+        for (int i = uniqueCode.length() - 1; i >= 0; i--) {
             char current = uniqueCode.charAt(i);
             if (carry) {
                 char nextCharacter = getNextCharacter(current);
-                carry = nextCharacter == 0;
+                carry = nextCharacter == '0';
                 nextValue = nextCharacter + nextValue;
             } else {
                 nextValue = current + nextValue;

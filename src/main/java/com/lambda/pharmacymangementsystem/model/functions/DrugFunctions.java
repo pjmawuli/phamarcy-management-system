@@ -114,7 +114,7 @@ public class DrugFunctions {
         try
                 (
                         Connection conn = db.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("UPDATE drugs SET name = ?, quantity = ?, price = ?, supplier_id = ? WHERE id = ?")
+                        PreparedStatement st = conn.prepareStatement("UPDATE drugs SET name = ?, drug_code = ?, quantity = ?, price = ?, supplier_id = ? WHERE id = ?")
                 ) {
 
 //            bind inputs
@@ -167,7 +167,7 @@ public class DrugFunctions {
         try
                 (
                         Connection conn = db.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("SELECT drug_code FROM drugs ORDER BY created_at DESC LIMIT 1")
+                        PreparedStatement st = conn.prepareStatement("SELECT drug_code FROM drugs ORDER BY drug_code DESC LIMIT 1")
                 ) {
 
 //            execute the query
