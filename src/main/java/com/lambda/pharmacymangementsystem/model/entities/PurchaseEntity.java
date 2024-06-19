@@ -32,7 +32,7 @@ public class PurchaseEntity {
     }
 
     //    define getters and setters
-    public void setId(int Id) {
+    public void setId(int id) {
         this.id = id;
     }
 
