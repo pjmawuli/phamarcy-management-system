@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.lambda.pharmacymangementsystem.controller.SuppliersPageController"
-            prefHeight="720" prefWidth="1280">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.lambda.pharmacymangementsystem.controller.SuppliersController" spacing="10" alignment="TOP_CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <HBox spacing="10">
+        <Button text="Back" onAction="#handleBack"/>
+        <TextField fx:id="searchBar" promptText="Search suppliers..." onKeyReleased="#handleSearch"/>
+    </HBox>
+    <TableView fx:id="suppliersTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colName" text="Name" prefWidth="150"/>
+            <TableColumn fx:id="colContact" text="Contact" prefWidth="100"/>
+            <TableColumn fx:id="colLocation" text="Location" prefWidth="150"/>
+            <TableColumn fx:id="colCreatedAt" text="Created At" prefWidth="150"/>
+            <TableColumn fx:id="colUpdatedAt" text="Updated At" prefWidth="150"/>
+        </columns>
+    </TableView>
+    <HBox spacing="10">
+        <Button text="Add Supplier" onAction="#handleAddSupplier"/>
+        <Button text="Remove Supplier" onAction="#handleRemoveSupplier"/>
+    </HBox>
+</VBox>
 
-</AnchorPane>
+
