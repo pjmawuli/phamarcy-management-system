@@ -46,6 +46,11 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -66,7 +71,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.lambda.pharmacymangementsystem/com.lambda.pharmacymangementsystem.HelloApplication
+                                com.lambda.pharmacymangementsystem/com.lambda.pharmacymangementsystem.PharmacyApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

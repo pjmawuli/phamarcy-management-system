@@ -1,0 +1,43 @@
+/* styles.css */
+@font-face {
+    font-family: 'Lato';
+    src: url('fonts/Lato-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Lato Bold';
+    src: url('fonts/Lato-Bold.ttf');
+}
+
+
+.root {
+    -fx-font-family: 'Lato';
+    -fx-background-color: #f5f5f5;
+    -fx-padding: 20;
+}
+
+.header {
+    -fx-text-fill: #333333;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-background-color: #6200ea;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+    -fx-font-family: 'Lato Bold';
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #3700b3;
+}
+
+.button:pressed {
+    -fx-background-color: #311b92;
+}
+
