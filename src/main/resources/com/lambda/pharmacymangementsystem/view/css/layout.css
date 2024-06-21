@@ -35,3 +35,8 @@
     -fx-border-radius: 5px;
     -fx-pref-width: 400px;
 }
+#searchBar {
+    -fx-prompt-text-fill: grey;
+}
+
+.component

@@ -22,7 +22,7 @@ public class SplashScreenController {
 
     @FXML
     private void handleStartButtonAction(ActionEvent event) throws IOException {
-        Parent pageLayoutParent = FXMLLoader.load(getClass().getResource("/com/lambda/pharmacymangementsystem/view/fxml/page-layout2.fxml"));
+        Parent pageLayoutParent = FXMLLoader.load(getClass().getResource("/com/lambda/pharmacymangementsystem/view/fxml/page-layout.fxml"));
         Scene pageLayoutScene = new Scene(pageLayoutParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(pageLayoutScene);
