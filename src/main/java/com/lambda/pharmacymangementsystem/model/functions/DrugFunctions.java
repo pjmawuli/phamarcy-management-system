@@ -130,7 +130,7 @@ public class DrugFunctions {
         try
                 (
                         Connection conn = db.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("UPDATE drugs SET name = ?, drug_code = ?, quantity = ?, price = ?, supplier_id = ? WHERE id = ? ORDER BY drug_code")
+                        PreparedStatement st = conn.prepareStatement("UPDATE drugs SET name = ?, drug_code = ?, quantity = ?, price = ?, supplier_id = ? WHERE id = ?")
                 ) {
 
 //            bind inputs
@@ -273,6 +273,57 @@ public class DrugFunctions {
             System.out.println("Could not retrieve drugs");
             e.printStackTrace();
             throw e;
+        }
+    }
+
+    //    update drug stock
+    public static void updateOneDrugStock(int id, int quantity) throws SQLException, Exception {
+
+        Connection conn = db.connectDatabase();
+        try {
+//          disable the default autocommit behavior of the pgdbc driver for transactions
+            conn.setAutoCommit(false);
+
+//          fetch drug with drug_code and quantity
+            PreparedStatement drugSt = conn.prepareStatement("SELECT drug_code, quantity FROM drugs WHERE id = ?");
+
+            drugSt.setInt(1, id);
+
+//            execute the query
+            ResultSet drugRs = drugSt.executeQuery();
+
+            if (!drugRs.next()) {
+                throw new Exception("Drug not found");
+            }
+
+            int quantityInStock = drugRs.getInt("quantity");
+            String drugCode = drugRs.getString("drug_code");
+
+//          throw Quantity out of stock error
+            if (quantityInStock < quantity) {
+                throw new Exception("Drug: " + drugCode + " has insufficient quantity in stock");
+            }
+
+            PreparedStatement st = conn.prepareStatement("UPDATE drugs SET quantity = ? WHERE id = ?");
+
+//            bind inputs
+            st.setInt(1, quantityInStock - quantity);
+            st.setInt(2, id);
+
+//            execute the query
+            st.executeUpdate();
+
+//            commit transaction
+            conn.commit();
+        } catch (Exception e) {
+//            rollback transaction in case of error
+            conn.rollback();
+//            TODO: handle errors properly
+            System.out.println("Could not update drug stock");
+            e.printStackTrace();
+            throw e;
+        } finally {
+            conn.close();
         }
     }
 
