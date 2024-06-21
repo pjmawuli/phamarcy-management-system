@@ -1,0 +1,37 @@
+.sidebar {
+    -fx-background-color: #283342;
+    -fx-background-radius: 0px 0px 0px 0px;
+    -fx-min-width: 315px;  /* Sidebar width */
+}
+
+.sidebar .item {
+    -fx-padding: 10px;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    /*-fx-background-color: #3A4552;*/  /* Non-hovered color */
+    -fx-background-radius: 10px;    /* Border radius */
+}
+
+.sidebar .item:hover {
+    -fx-background-color: #405060;
+}
+
+.sidebar .item.dashboard,
+.sidebar .item.purchase-history,
+.sidebar .item.inventory {
+    -fx-cursor: hand;
+}
+.top-nav {
+    -fx-background-color: #F7FAFD;
+;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+.top-nav .search-bar {
+    -fx-background-color: #E3EBF3;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-pref-width: 400px;
+}
