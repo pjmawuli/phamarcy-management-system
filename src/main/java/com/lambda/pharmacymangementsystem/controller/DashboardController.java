@@ -10,13 +10,13 @@ import java.io.IOException;
 public class DashboardController {
 
     @FXML
-    private AnchorPane dashboardPane;
+    private VBox dashboardComponents;
 
     public void initialize() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/fxml/components/overview-component.fxml"));
             VBox overviewComponent = loader.load();
-            dashboardPane.getChildren().add(overviewComponent);
+            dashboardComponents.getChildren().add(overviewComponent);
         } catch (IOException e) {
             e.printStackTrace();
         }

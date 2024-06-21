@@ -10,7 +10,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
     /*-fx-background-color: #3A4552;*/  /* Non-hovered color */
-    -fx-background-radius: 10px;    /* Border radius */
+    -fx-background-radius: 12px;    /* Border radius */
 }
 
 .sidebar .item:hover {

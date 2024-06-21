@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
 
 <AnchorPane fx:id="dashboardPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.lambda.pharmacymangementsystem.controller.DashboardController"
             prefHeight="400.0" prefWidth="600.0">
+
+    <Label text="Dashboard" layoutX="20" layoutY="20" style="-fx-font-size: 24px;"/>
+
+    <VBox fx:id="dashboardComponents" layoutX="20" layoutY="60" spacing="10">
+        <!-- Components will be loaded here -->
+    </VBox>
 
 </AnchorPane>

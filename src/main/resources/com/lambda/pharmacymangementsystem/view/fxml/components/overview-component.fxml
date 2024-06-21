@@ -8,6 +8,7 @@
 <VBox id="overviewComponent" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.lambda.pharmacymangementsystem.controller.OverviewComponentController"
+      stylesheets="@../../css/overview-component.css"
       spacing="10" alignment="CENTER">
     <Label text="Overview" style="-fx-font-size: 24px;"/>
     <HBox spacing="20" alignment="CENTER">
