@@ -9,10 +9,10 @@
       stylesheets="@../css/purchase-history.css"
       spacing="10">
     <children>
-        <HBox spacing="10">
+        <HBox spacing="10" style="-fx-padding: 20px">
             <TextField fx:id="searchBar" promptText="Search by purchase code or supplier" HBox.hgrow="ALWAYS"/>
             <Region HBox.hgrow="ALWAYS" /> <!-- This will take up all available space -->
-            <Button fx:id="addPurchaseButton" text="Add Purchase" />
+            <Button fx:id="addPurchaseButton" text="Add Purchase" styleClass="unique-button" />
         </HBox>
         <VBox fx:id="tableContainer" spacing="10">
             <TableView fx:id="purchaseHistoryTable" VBox.vgrow="ALWAYS" styleClass="table-view">

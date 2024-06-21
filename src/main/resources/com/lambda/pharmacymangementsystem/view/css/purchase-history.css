@@ -24,14 +24,29 @@
 
 /* Style the search box */
 #searchBar {
-    -fx-background-color: #e3ebf3;
+    -fx-background-color: #d5dae0;
     -fx-border-color: #e0e0e0;
     -fx-border-width: 1px;
-    -fx-padding: 5px;
     -fx-font-size: 14px;
     -fx-max-width: 300px;
     -fx-border-radius: 10;
+    -fx-padding-left: 20px;
+}
 
+.unique-button {
+    -fx-background-color: #283342;
+    -fx-border: none;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-padding: 10px 24px;
+    -fx-border-radius: 12px;
+    -fx-padding-right: 20px;
+}
+
+.unique-button:hover {
+    -fx-background-color: #3700b3;
+    -fx-text-fill: white;
 }
 
 /* Style the pagination control */

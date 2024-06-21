@@ -1,10 +1,9 @@
 #overviewComponent {
-    /* Replace with your desired styles */
-    padding: 20px;
-    border-radius: 10px;
-    background: #3700b3;
-    border-bottom-color: #283342;
-    width: 500px; /* Adjust as needed */
-    height: 300px; /* Adjust as needed */
-    box-shadow: 5px 5px 5px #000; /* Adjust as needed */
+    -fx-padding: 20px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #e3ebf3;
+    -fx-border-color: #283342;
+    -fx-pref-width: 500px; /* Adjust as needed */
+    -fx-pref-height: 300px; /* Adjust as needed */
+    -fx-effect: dropshadow(three-pass-box, black, 5, 0, 5, 5); /* Adjust as needed */
 }
