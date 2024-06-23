@@ -51,7 +51,7 @@ public class PurchaseHistoryController {
             });
         });
 
-        int itemsPerPage = 10; // replace with the number of items you want per page
+        int itemsPerPage = 15; // replace with the number of items you want per page
         int pageCount = (data.size() + itemsPerPage - 1) / itemsPerPage;
         pagination.setPageCount(Math.min(pageCount,5));
         pagination.setPageFactory(pageIndex -> {

@@ -23,33 +23,52 @@ public class PageLayoutController {
     @FXML
     private Pane componentPane;
 
-    private Stack<Node> pageHistory = new Stack<>();
+    // Stack to keep track of the navigation history in the application
+private Stack<Node> pageHistory = new Stack<>();
 
-    @FXML
-    public void initialize() {
-        loadPage("/com/lambda/pharmacymangementsystem/view/fxml/dashboard.fxml", dashboardLabel);
-    }
+/**
+ * This method is called after all @FXML annotated members have been injected.
+ * It's used to initialize the controller. In this case, it loads the dashboard page.
+ */
+@FXML
+public void initialize() {
+    loadPage("/com/lambda/pharmacymangementsystem/view/fxml/dashboard.fxml", dashboardLabel);
+}
 
-    public Label getDashboardLabel(){
-        return dashboardLabel;
-    }
+/**
+ * Getter for the dashboard label.
+ *
+ * @return the dashboard label
+ */
+public Label getDashboardLabel(){
+    return dashboardLabel;
+}
 
-    public void loadPage(String fxmlPath, Label activeLabel) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Node page = loader.load();
-            if (loader.getController() instanceof DashboardController) {
-                ((DashboardController) loader.getController()).setPageLayoutController(this);
-            }
-            if (!componentPane.getChildren().isEmpty()) {
-                pageHistory.push(componentPane.getChildren().get(0));
-            }
-            componentPane.getChildren().setAll(page);
-            setActiveLabel(activeLabel);
-        } catch (IOException e) {
-            e.printStackTrace();
+/**
+ * This method is used to load a new page into the component pane.
+ * It also keeps track of the navigation history by pushing the current page into the pageHistory stack.
+ * If the loaded controller is an instance of DashboardController, it sets the page layout controller of it.
+ * After loading the new page, it sets the active label.
+ *
+ * @param fxmlPath the path to the fxml file of the page to load
+ * @param activeLabel the label to set as active
+ */
+public void loadPage(String fxmlPath, Label activeLabel) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+        Node page = loader.load();
+        if (loader.getController() instanceof DashboardController) {
+            ((DashboardController) loader.getController()).setPageLayoutController(this);
         }
+        if (!componentPane.getChildren().isEmpty()) {
+            pageHistory.push(componentPane.getChildren().get(0));
+        }
+        componentPane.getChildren().setAll(page);
+        setActiveLabel(activeLabel);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 
     @FXML
     public void handleDashboardLabelClick() {

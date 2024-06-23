@@ -6,20 +6,24 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="900" prefHeight="449.0"
-      prefWidth="748.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
-    <TableView fx:id="tableView" layoutY="107.0">
-        <columns>
-            <TableColumn fx:id="name" prefWidth="117.60000765323639" text="Name"/>
-            <TableColumn fx:id="id" prefWidth="105.60002899169922" text="ID"/>
-            <TableColumn fx:id="drug_code" prefWidth="105.5999755859375" text="Drug Code"/>
-            <TableColumn fx:id="quantity" prefWidth="111.20001220703125" text="Quantity"/>
-            <TableColumn fx:id="price" prefWidth="89.60006713867188" text="Price"/>
-            <TableColumn fx:id="supplier_id" prefWidth="100.0" text="Supplier ID"/>
-            <TableColumn fx:id="created_at" prefWidth="120.0" text="Created At"/>
-        </columns>
-    </TableView>
-    <TextField layoutX="14.0" layoutY="61.0" promptText="Search"/>
-    <Button layoutX="617.0" layoutY="23.0" mnemonicParsing="false" style="-fx-background-color: #5b36c9;"
-            text="+ Add Drug"/>
+<?import java.net.URL?>
+<AnchorPane fx:id="drugViewPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="900" prefHeight="449.0"
+            prefWidth="748.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../../css/view-drugs.css">
+
+    <children>
+        <TableView fx:id="tableView" layoutY="107.0">
+            <columns>
+                <TableColumn fx:id="name" prefWidth="150.0" text="Name"/>
+                <TableColumn fx:id="id" prefWidth="80.0" text="ID"/>
+                <TableColumn fx:id="drug_code" prefWidth="100.0" text="Drug Code"/>
+                <TableColumn fx:id="quantity" prefWidth="80.0" text="Quantity"/>
+                <TableColumn fx:id="price" prefWidth="80.0" text="Price"/>
+                <TableColumn fx:id="supplier_id" prefWidth="80.0" text="Supplier ID"/>
+                <TableColumn fx:id="created_at" prefWidth="120.0" text="Created At"/>
+            </columns>
+        </TableView>
+        <TextField layoutX="14.0" layoutY="61.0" prefWidth="200.0" promptText="Search"/>
+        <Button layoutX="617.0" layoutY="23.0" mnemonicParsing="false" styleClass="add-button" text="+ Add Drug"/>
+    </children>
 </AnchorPane>

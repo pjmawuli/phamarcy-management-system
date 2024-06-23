@@ -5,9 +5,10 @@
 <?import javafx.collections.FXCollections?>
 
 <?import java.lang.String?>
-<BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lambda.pharmacymangementsystem.controller.InventoryController">
+<BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lambda.pharmacymangementsystem.controller.InventoryController"
+            stylesheets="@../css/inventory.css" maxWidth="Infinity" maxHeight="Infinity">
     <left>
-        <ListView fx:id="formList" prefWidth="200.0">
+        <ListView fx:id="formList" prefWidth="200.0" VBox.vgrow="ALWAYS">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Add Drug" />
@@ -20,7 +21,7 @@
         </ListView>
     </left>
     <center>
-        <ScrollPane fitToWidth="true" fitToHeight="true">
+        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
             <content>
                 <StackPane fx:id="formContainer" />
             </content>

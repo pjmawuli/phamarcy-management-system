@@ -66,6 +66,10 @@
             <TextField fx:id="searchBar" layoutX="94.0" layoutY="25.0" promptText="Search for anything here.." styleClass="search-bar" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="componentPane" AnchorPane.leftAnchor="315.0" AnchorPane.topAnchor="73.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" />
+      <AnchorPane fx:id="componentPane" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="73.0" AnchorPane.rightAnchor="4.0" AnchorPane.bottomAnchor="0.0" >
+
+         <!-- Components will be loaded here on right side pane -->
+
+      </AnchorPane>
    </children>
 </AnchorPane>

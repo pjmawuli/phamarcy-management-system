@@ -1,0 +1,61 @@
+/* styles.css */
+
+/* Overall Styling */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: #f5f5f5;
+    -fx-padding: 0px;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+}
+
+/* ListView Styling */
+.list-view {
+    -fx-background-color: #fff;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 0px;
+}
+
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: rgba(173, 140, 241, 0.56);
+}
+
+.list-view .list-cell:filled:selected {
+    -fx-background-color: #5d21d2;
+    -fx-text-fill: #fff;
+}
+
+.list-view .list-cell:filled:selected:hover {
+    -fx-background-color: rgb(55, 0, 179);
+}
+
+/* ScrollPane Styling */
+.scroll-pane {
+    -fx-background-color: #fff;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: #fff;
+}
+
+/* StackPane Styling */
+.stack-pane {
+    -fx-background-color: #fafafa;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);
+}
