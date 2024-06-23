@@ -14,7 +14,7 @@
             <Region HBox.hgrow="ALWAYS" /> <!-- This will take up all available space -->
             <Button fx:id="addPurchaseButton" text="Add Purchase" styleClass="unique-button" />
         </HBox>
-        <VBox fx:id="tableContainer" spacing="10">
+        <VBox fx:id="tableContainer" spacing="10" VBox.vgrow="ALWAYS">
             <TableView fx:id="purchaseHistoryTable" VBox.vgrow="ALWAYS" styleClass="table-view">
                 <columns>
                     <TableColumn fx:id="drugCodeColumn" text="Drug Code" styleClass="table-column"/>

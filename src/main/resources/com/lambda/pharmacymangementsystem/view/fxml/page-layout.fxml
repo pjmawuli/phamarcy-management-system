@@ -16,7 +16,7 @@
             <Label layoutX="114.0" layoutY="93.0" styleClass="sidebar-items" />
             <AnchorPane layoutY="184.0" prefHeight="191.0" prefWidth="315.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="184.0">
                <children>
-                  <Label fx:id="dashboardLabel" alignment="CENTER" layoutY="14.0" prefHeight="42.0" prefWidth="111.0" text="Dashboard" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label fx:id="dashboardLabel" alignment="CENTER" layoutY="14.0" prefHeight="42.0" prefWidth="111.0" text="Dashboard" textAlignment="CENTER" onMouseClicked="#handleDashboardLabelClick" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <styleClass>
                         <String fx:value="item" />
                         <String fx:value="sidebar" />
@@ -29,7 +29,7 @@
                          prefHeight="42.0"
                          prefWidth="159.0"
                          text="Purchase History"
-                         onMouseClicked="#loadPurchaseHistory"
+                         onMouseClicked="#handlePurchaseHistoryLabelClick"
                          textAlignment="CENTER"
                          AnchorPane.leftAnchor="0.0"
                          AnchorPane.rightAnchor="0.0"
@@ -39,7 +39,7 @@
                         <String fx:value="sidebar" />
                      </styleClass>
                   </Label>
-                  <Label fx:id="inventoryLabel" alignment="CENTER" layoutX="28.0" layoutY="144.0" prefHeight="42.0" prefWidth="111.0" text="Inventory" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="84.0">
+                  <Label fx:id="inventoryLabel" alignment="CENTER" layoutX="28.0" layoutY="144.0" prefHeight="42.0" prefWidth="111.0" text="Inventory" textAlignment="CENTER" onMouseClicked="#handleInventoryLabelClick" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="84.0">
                      <styleClass>
                         <String fx:value="item" />
                         <String fx:value="sidebar" />
@@ -66,5 +66,6 @@
             <TextField fx:id="searchBar" layoutX="94.0" layoutY="25.0" promptText="Search for anything here.." styleClass="search-bar" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="componentPane" AnchorPane.leftAnchor="315.0" AnchorPane.topAnchor="73.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" />   </children>
+      <AnchorPane fx:id="componentPane" AnchorPane.leftAnchor="315.0" AnchorPane.topAnchor="73.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" />
+   </children>
 </AnchorPane>

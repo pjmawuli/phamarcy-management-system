@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.lambda.pharmacymangementsystem.controller.ViewDrugsController"
+      spacing="10" >
+    <Region HBox.hgrow="ALWAYS" />
+    <children>
+        <HBox spacing="10">
+            <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
+            <TextField fx:id="searchField" HBox.hgrow="ALWAYS" promptText="Search by ID, name, supplier, or code"/>
+            <Button fx:id="searchButton" text="Search" onAction="#handleSearch"/>
+        </HBox>
+        <Label text="Drugs" style="-fx-font-size: 24px;"/>
+        <TableView fx:id="drugsTable" VBox.vgrow="ALWAYS" HBox.hgrow="SOMETIMES">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID"/>
+                <TableColumn fx:id="nameColumn" text="Name"/>
+                <TableColumn fx:id="drugCodeColumn" text="Drug Code"/>
+                <TableColumn fx:id="quantityColumn" text="Quantity"/>
+                <TableColumn fx:id="priceColumn" text="Price"/>
+                <TableColumn fx:id="supplierIdColumn" text="Supplier ID"/>
+            </columns>
+        </TableView>
+    </children>
+</HBox>

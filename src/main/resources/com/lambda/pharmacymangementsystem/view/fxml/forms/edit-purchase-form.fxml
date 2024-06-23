@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.VBox?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField floatText="Customer's Name" layoutX="127.0" layoutY="82.0" prefWidth="294.0" />
+      <TextField layoutX="127.0" layoutY="82.0" prefWidth="294.0" promptText="Customer's Name" />
       <Label layoutX="247.0" layoutY="39.0" text="Edit Purchase" />
-      <TextField floatText="Total Price" layoutX="127.0" layoutY="150.0" prefWidth="294.0" />
+      <TextField layoutX="127.0" layoutY="150.0" prefWidth="294.0" promptText="Total Price" />
       <DatePicker layoutX="127.0" layoutY="200.0" prefHeight="26.0" prefWidth="184.0" />
       <Label layoutX="331.0" layoutY="204.0" text="Date Added" />
       <Spinner layoutX="127.0" layoutY="258.0" />
       <Label layoutX="331.0" layoutY="262.0" text="Quantity" />
-      <TextField layoutX="127.0" layoutY="322.0" />
-      <Label layoutX="331.0" layoutY="326.0" text="Purchase Code" />
+      <TextField layoutX="127.0" layoutY="322.0" promptText="Purchase Code" />
       <VBox layoutX="466.0" layoutY="112.0" prefHeight="104.0" prefWidth="92.0" spacing="40.0">
          <children>
             <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Save" />

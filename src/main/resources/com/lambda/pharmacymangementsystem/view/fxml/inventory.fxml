@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lambda.pharmacymangementsystem.controller.InventoryController">
+    <left>
+        <ListView fx:id="formList" prefWidth="200.0">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Add Drug" />
+                    <String fx:value="Edit Drug" />
+                    <String fx:value="Add Purchase" />
+                    <String fx:value="Edit Purchase" />
+                    <String fx:value="Edit Supplier" />
+                </FXCollections>
+            </items>
+        </ListView>
+    </left>
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <content>
+                <StackPane fx:id="formContainer" />
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
