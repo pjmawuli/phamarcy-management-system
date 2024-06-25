@@ -1,0 +1,33 @@
+/* drug-view.css */
+
+/* AnchorPane styling */
+#drugViewPane {
+    -fx-background-color: #f4f4f4;
+}
+
+/* TableView styling */
+#tableView {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bcbcbc;
+    -fx-border-width: 1px;
+}
+
+/* TextField styling */
+TextField {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bcbcbc;
+    -fx-border-width: 1px;
+    -fx-pref-height: 30px;
+}
+
+/* Button styling */
+.add-button {
+    -fx-background-color: #5b36c9;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-width: 120px;
+}
+
+.add-button:hover {
+    -fx-background-color: #3700b3;
+}

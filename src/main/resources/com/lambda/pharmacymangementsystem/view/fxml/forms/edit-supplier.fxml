@@ -2,18 +2,18 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-
 <?import javafx.scene.layout.VBox?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0"
             prefWidth="621.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
-   <TextField layoutX="127.0" layoutY="82.0" prefWidth="294.0" promptText="Supplier's Name"/>
-   <Label layoutX="431.0" layoutY="46.0" text="Edit Supplier"/>
-   <TextField layoutX="127.0" layoutY="150.0" prefWidth="294.0" promptText="Address"/>
-   <DatePicker layoutX="127.0" layoutY="200.0" prefHeight="26.0" prefWidth="184.0"/>
+   <TextField fx:id="idField" layoutX="127.0" layoutY="46.0" prefWidth="294.0" promptText="ID" editable="false"/>
+   <TextField fx:id="nameField" layoutX="127.0" layoutY="82.0" prefWidth="294.0" promptText="Supplier's Name"/>
+   <TextField fx:id="addressField" layoutX="127.0" layoutY="150.0" prefWidth="294.0" promptText="Address"/>
+   <DatePicker fx:id="dateAddedPicker" layoutX="127.0" layoutY="200.0" prefHeight="26.0" prefWidth="184.0"/>
    <Label layoutX="331.0" layoutY="204.0" text="Date Added"/>
-   <TextField layoutX="127.0" layoutY="255.0" promptText="Contact"/>
+   <TextField fx:id="contactField" layoutX="127.0" layoutY="255.0" promptText="Contact"/>
    <VBox layoutX="466.0" layoutY="112.0" prefHeight="104.0" prefWidth="92.0" spacing="40.0">
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="76.0" text="Save"/>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Done"/>
+      <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="76.0" text="Save"/>
+      <Button fx:id="doneButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Done"/>
    </VBox>
 </AnchorPane>
