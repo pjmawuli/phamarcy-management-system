@@ -1,0 +1,63 @@
+.root {
+    -fx-background-color: #f0f0f0;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.sidebar {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 20px;
+    -fx-pref-width: 200px;
+}
+
+.sidebar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 20px 0;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-alignment: CENTER-LEFT;
+    -fx-max-width: Infinity;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #34495e;
+}
+
+.content-area {
+    -fx-padding: 20px;
+}
+
+.add-button {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+}
+
+.add-button:hover {
+    -fx-background-color: #27ae60;
+}
+
+.drug-table {
+    -fx-background-color: white;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1px;
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #ecf0f1;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #3498db;
+}
