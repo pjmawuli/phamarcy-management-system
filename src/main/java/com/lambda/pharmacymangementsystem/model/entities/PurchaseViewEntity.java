@@ -7,6 +7,7 @@ public class PurchaseViewEntity {
     private int id;
     private String purchase_code;
     private int quantity;
+    private double unit_price;
     private double total_price;
     private String customer_name;
     private LocalDateTime created_at;
@@ -41,6 +42,7 @@ public class PurchaseViewEntity {
         this.purchase_code = purchase_code;
         this.quantity = quantity;
         this.total_price = total_price;
+        this.unit_price = total_price / quantity;
         this.customer_name = customer_name;
         this.created_at = created_at;
         this.drug_id = drug_id;
@@ -79,12 +81,21 @@ public class PurchaseViewEntity {
         this.quantity = quantity;
     }
 
+
     public double getTotalPrice() {
         return total_price;
     }
 
     public void setTotalPrice(double total_price) {
         this.total_price = total_price;
+    }
+
+    public double getUnitPrice() {
+        return unit_price;
+    }
+
+    public void setUnitPrice() {
+        this.unit_price = total_price / quantity;
     }
 
     public String getCustomerName() {

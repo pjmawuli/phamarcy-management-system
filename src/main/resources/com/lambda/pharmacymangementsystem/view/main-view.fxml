@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/22"
+            fx:controller="com.lambda.pharmacymangementsystem.controller.MainController"
+            prefHeight="527.0" prefWidth="765.0"
+            stylesheets="@styles.css">
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox styleClass="sidebar">
+            <Label text="Lambda" styleClass="sidebar-title"/>
+            <Button fx:id="dashboardButton" text="Dashboard" styleClass="sidebar-button"
+                    onAction="#handleDashboardButtonAction"/>
+            <Button fx:id="suppliersButton" text="Suppliers" styleClass="sidebar-button"
+                    onAction="#handleSuppliersButtonAction"/>
+            <Button fx:id="drugsButton" text="Drugs" styleClass="sidebar-button" onAction="#handleDrugsButtonAction"/>
+            <Button fx:id="purchasesButton" text="Purchases" styleClass="sidebar-button"
+                    onAction="#handlePurchasesButtonAction"/>
+            <!--            <Button fx:id="reportsButton" text="Reports" styleClass="sidebar-button"-->
+            <!--                    onAction="#handleReportsButtonAction"/>-->
+
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
+    </center>
+
+</BorderPane>

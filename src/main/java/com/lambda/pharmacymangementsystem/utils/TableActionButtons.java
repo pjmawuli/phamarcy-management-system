@@ -1,7 +1,5 @@
 package com.lambda.pharmacymangementsystem.utils;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -9,7 +7,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
-public class TableActions {
+import java.util.function.Consumer;
+
+public class TableActionButtons {
 
     public static Button createEditButton() {
         Button editButton = new Button("Edit");
@@ -29,10 +29,12 @@ public class TableActions {
         return box;
     }
 
-    public static <T> void setupActionColumn(TableColumn<T, Void> actionColumn,
-                                             EventHandler<ActionEvent> onEdit,
-                                             EventHandler<ActionEvent> onDelete) {
+    public static <T> TableColumn<T, Void> createActionColumn(
+            Consumer<T> onEdit,
+            Consumer<T> onDelete) {
+        TableColumn<T, Void> actionColumn = new TableColumn<>("Action");
         Callback<TableColumn<T, Void>, TableCell<T, Void>> cellFactory = new Callback<>() {
+
             @Override
             public TableCell<T, Void> call(final TableColumn<T, Void> param) {
                 return new TableCell<>() {
@@ -41,8 +43,14 @@ public class TableActions {
                     private final HBox box = createActionBox(editButton, deleteButton);
 
                     {
-                        editButton.setOnAction(event -> onEdit.handle(event));
-                        deleteButton.setOnAction(event -> onDelete.handle(event));
+                        editButton.setOnAction(event -> {
+                            T item = getTableView().getItems().get(getIndex());
+                            onEdit.accept(item);
+                        });
+                        deleteButton.setOnAction(event -> {
+                            T item = getTableView().getItems().get(getIndex());
+                            onDelete.accept(item);
+                        });
                     }
 
                     @Override
@@ -59,5 +67,7 @@ public class TableActions {
         };
 
         actionColumn.setCellFactory(cellFactory);
+        return actionColumn;
+
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.lambda.pharmacymangementsystem.controller.AddDrugController"
+      spacing="10" alignment="CENTER" styleClass="modal-dialog">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Add/Edit Drug" styleClass="title"/>
+
+    <GridPane vgap="10" hgap="10">
+        <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Code:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="codeField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="quantityField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Price:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="Supplier:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextFields fx:id="supplierField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancel" onAction="#handleCancel"/>
+        <Button text="Save" onAction="#handleSave" defaultButton="true"/>
+    </HBox>
+</VBox>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.lambda.pharmacymangementsystem.controller.DashboardController" styleClass="dashboard-container"
+      spacing="20">
+    <HBox alignment="CENTER_LEFT" styleClass="page-header">
+        <Label text="Dashboard" styleClass="page-title"/>
+    </HBox>
+
+    <GridPane hgap="20" vgap="20">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+            <ColumnConstraints percentWidth="33.33"/>
+        </columnConstraints>
+
+        <!-- Total Drugs Card -->
+        <VBox styleClass="dashboard-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <SVGPath
+                        content="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2zm-7-3.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm0-8.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm0 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+                        styleClass="card-icon"/>
+                <Label text="Total Drugs" styleClass="card-title"/>
+            </HBox>
+            <Label fx:id="totalDrugsLabel" text="0" styleClass="card-value"/>
+        </VBox>
+
+        <!-- Total Suppliers Card -->
+        <VBox styleClass="dashboard-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <SVGPath
+                        content="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                        styleClass="card-icon"/>
+                <Label text="Total Suppliers" styleClass="card-title"/>
+            </HBox>
+            <Label fx:id="totalSuppliersLabel" text="0" styleClass="card-value"/>
+        </VBox>
+
+        <!-- Total Purchases Card -->
+        <VBox styleClass="dashboard-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <SVGPath
+                        content="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                        styleClass="card-icon"/>
+                <Label text="Total Purchases" styleClass="card-title"/>
+            </HBox>
+            <Label fx:id="totalPurchasesLabel" text="0" styleClass="card-value"/>
+        </VBox>
+
+        <!-- Purchases Sold Today Card -->
+        <VBox styleClass="dashboard-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <SVGPath
+                        content="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                        styleClass="card-icon"/>
+                <Label text="Purchases Made Today" styleClass="card-title"/>
+            </HBox>
+            <Label fx:id="totalTodayPurchasesLabel" text="0" styleClass="card-value"/>
+        </VBox>
+
+        <!-- Low in Stock Card -->
+        <VBox styleClass="dashboard-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <SVGPath
+                        content="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                        styleClass="card-icon"/>
+                <Label text="Low in Stock" styleClass="card-title"/>
+            </HBox>
+            <Label fx:id="lowInStockLabel" text="0" styleClass="card-value"/>
+        </VBox>
+    </GridPane>
+</VBox>

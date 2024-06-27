@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.lambda.pharmacymangementsystem.controller.PurchaseController"
+      spacing="10" stylesheets="@styles.css">
+
+    <HBox styleClass="page-header">
+        <Label text="Purchases" styleClass="page-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Add New Purchase" styleClass="add-button"/>
+    </HBox>
+
+    <TableView fx:id="datatable" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" styleClass="purchase-table">
+        <columns>
+            <TableColumn fx:id="purchaseCodeColumn" text="Purchase Code" styleClass="table-column"/>
+            <TableColumn fx:id="drugNameColumn" text="Drug Name" styleClass="table-column"/>
+            <TableColumn fx:id="drugCodeColumn" text="Drug Code" styleClass="table-column"/>
+            <TableColumn fx:id="quantityColumn" text="Quantity" styleClass="table-column"/>
+            <TableColumn fx:id="unitPriceColumn" text="Unit Price" styleClass="table-column money"/>
+            <TableColumn fx:id="totalPriceColumn" text="Total Price" styleClass="table-column money"/>
+            <TableColumn fx:id="customerNameColumn" text="Customer Name" styleClass="table-column"/>
+            <!--            <TableColumn fx:id="drugPriceColumn" text="Drug Price" styleClass="table-column money"/>-->
+            <TableColumn fx:id="createdAtColumn" text="Sold At" styleClass="table-column"/>
+        </columns>
+    </TableView>
+</VBox>

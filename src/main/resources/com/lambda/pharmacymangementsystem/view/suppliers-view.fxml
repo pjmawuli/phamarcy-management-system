@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.lambda.pharmacymangementsystem.controller.SupplierController"
+      spacing="10" stylesheets="@styles.css">
+
+    <HBox styleClass="page-header">
+        <Label text="Suppliers" styleClass="page-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Add New Suppliers" styleClass="add-button" onAction="#showAddSupplier"/>
+    </HBox>
+
+    <TableView fx:id="datatable" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" styleClass="drug-table">
+        <columns>
+            <TableColumn fx:id="nameColumn" text="Name" styleClass="table-column"/>
+            <TableColumn fx:id="contactColumn" text="Contact" styleClass="table-column"/>
+            <TableColumn fx:id="locationColumn" text="Location" styleClass="table-column"/>
+            <TableColumn fx:id="createdAtColumn" text="Created At" styleClass="table-column"/>
+            <!--            <TableColumn fx:id="actionColumn" text="Action" styleClass="table-action"/>-->
+        </columns>
+    </TableView>
+</VBox>
