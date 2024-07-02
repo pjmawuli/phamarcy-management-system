@@ -18,7 +18,7 @@ public class PharmacyApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         String css = String.valueOf(getClass().getResource("/com/lambda/pharmacymangementsystem/view/css/style.css"));
         scene.getStylesheets().add(css);
-        stage.setTitle("Hello!");
+        stage.setTitle("Lambda Pharmacy Manager");
         stage.setScene(scene);
         stage.show();
     }
