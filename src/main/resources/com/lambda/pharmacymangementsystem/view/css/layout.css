@@ -1,7 +1,7 @@
 .sidebar {
     -fx-background-color: #283342;
     -fx-background-radius: 0px 0px 0px 0px;
-    -fx-min-width: 315px;  /* Sidebar width */
+    -fx-min-width: 50px;  /* Sidebar width */
 }
 
 .sidebar .item {
@@ -24,7 +24,6 @@
 }
 .top-nav {
     -fx-background-color: #F7FAFD;
-;
     -fx-padding: 10px;
     -fx-alignment: center;
 }
@@ -35,6 +34,4 @@
     -fx-border-radius: 5px;
     -fx-pref-width: 400px;
 }
-#searchBar {
-    -fx-prompt-text-fill: grey;
-}
+

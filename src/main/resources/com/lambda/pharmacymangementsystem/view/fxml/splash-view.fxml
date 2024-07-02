@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" fx:controller="com.lambda.pharmacymangementsystem.controller.SplashScreenController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lambda.pharmacymangementsystem.controller.SplashScreenController">
    <children>
-      <ImageView fitHeight="221.0" fitWidth="323.0" layoutX="344.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="221.0" fitWidth="323.0" layoutX="388.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/drugstore.png" />
          </image></ImageView>
-      <Label layoutX="404.0" layoutY="477.0" styleClass="label" text="Pharmacy Manager">
+      <Label layoutX="395.0" layoutY="477.0" styleClass="label" text="Pharmacy Manager">
          <font>
             <Font size="26.0" />
          </font></Label>
-      <Button layoutX="478.0" layoutY="585.0" mnemonicParsing="false" scaleX="1.5" scaleY="1.5" styleClass="button" text="Start!" onAction="#handleStartButtonAction" />
+      <Button layoutX="478.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleStartButtonAction" scaleX="1.5" scaleY="1.5" styleClass="button" text="Start!" />
       <Label layoutX="107.0" layoutY="64.0" styleClass="label" text="Welcome to your very own ...">
          <font>
             <Font size="26.0" />
