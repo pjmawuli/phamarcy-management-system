@@ -32,7 +32,7 @@ private Stack<Node> pageHistory = new Stack<>();
  */
 @FXML
 public void initialize() {
-    loadPage("/com/lambda/pharmacymangementsystem/view/fxml/dashboard.fxml", dashboardLabel);
+    loadPage("/com/lambda/pharmacymangementsystem/view/fxml/drug-manager.fxml", dashboardLabel);
 }
 
 /**
@@ -72,7 +72,7 @@ public void loadPage(String fxmlPath, Label activeLabel) {
 
     @FXML
     public void handleDashboardLabelClick() {
-        loadPage("/com/lambda/pharmacymangementsystem/view/fxml/dashboard.fxml", dashboardLabel);
+        loadPage("/com/lambda/pharmacymangementsystem/view/fxml/drug-manager.fxml", dashboardLabel);
     }
 
     @FXML
@@ -82,7 +82,7 @@ public void loadPage(String fxmlPath, Label activeLabel) {
 
     @FXML
     public void handleInventoryLabelClick() {
-        loadPage("/com/lambda/pharmacymangementsystem/view/fxml/inventory.fxml", inventoryLabel);
+        loadPage("/com/lambda/pharmacymangementsystem/view/fxml/drug-details.fxml", inventoryLabel);
     }
 
     public void loadPreviousPage() {

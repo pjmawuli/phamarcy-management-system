@@ -23,9 +23,9 @@
 }
 
 .button {
-    -fx-background-color: #6200ea;
+    -fx-background-color: #283342;
     -fx-text-fill: white;
-    -fx-padding: 10 20;
+    -fx-padding: 10 10;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
     -fx-cursor: hand;
@@ -34,10 +34,10 @@
 }
 
 .button:hover {
-    -fx-background-color: #3700b3;
+    -fx-background-color: #405060;
 }
 
 .button:pressed {
-    -fx-background-color: #311b92;
+    -fx-background-color: #283342;
 }
 
