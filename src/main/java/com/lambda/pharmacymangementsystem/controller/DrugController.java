@@ -41,6 +41,7 @@ public class DrugController {
     // Initialization method
     @FXML
     private void initialize() {
+        ControllerManager.getInstance().setDrugController(this);
         DataExport exportUtils = new DataExport();
         datatable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -82,6 +83,11 @@ public class DrugController {
             System.out.println("Error loading drugs: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public void refreshDrugsTable() {
+        drugs.clear(); // Clear the current list
+        loadDrugs(); // Reload drugs from the database
     }
 
     private void handleAdd() {

@@ -27,7 +27,7 @@ public class AddDrugController {
     @FXML
     public Button addButton;
 
-    private HashMap<String, Integer> supplierMap = new HashMap<>();
+    private final HashMap<String, Integer> supplierMap = new HashMap<>();
 
     @FXML
     public void initialize() {
@@ -53,13 +53,17 @@ public class AddDrugController {
             String name = nameField.getText();
             int quantity = Integer.parseInt(quantityField.getText());
             int supplierId = supplierMap.get(supplierComboBox.getValue());
-            // Generate the next drug code
-            String lastDrugCode = DrugFunctions.getRecentDrugCode();// Get the last drug code
+            String lastDrugCode = DrugFunctions.getRecentDrugCode();
             String drugCode = Drug.generateNextDrugCode(lastDrugCode);
-            double price = Double.parseDouble(null); // Get the price from the user
+            double price = 0; // This should be replaced with actual price retrieval logic
 
             DrugEntity newDrug = new DrugEntity(name, drugCode, quantity, price, supplierId);
             DrugFunctions.addOneDrug(newDrug);
+
+            DrugController drugController = ControllerManager.getInstance().getDrugController();
+            if (drugController != null) {
+                drugController.refreshDrugsTable();
+            }
             // Show success message
         } catch (Exception e) {
             e.printStackTrace();
