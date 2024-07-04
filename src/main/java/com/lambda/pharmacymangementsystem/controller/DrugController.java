@@ -1,5 +1,6 @@
 package com.lambda.pharmacymangementsystem.controller;
 
+import com.lambda.pharmacymangementsystem.model.entities.DrugEntity;
 import com.lambda.pharmacymangementsystem.model.entities.DrugViewEntity;
 import com.lambda.pharmacymangementsystem.model.functions.DrugFunctions;
 import com.lambda.pharmacymangementsystem.utils.DataExport;
@@ -7,11 +8,16 @@ import com.lambda.pharmacymangementsystem.utils.TableActionButtons;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class DrugController {
@@ -93,10 +99,33 @@ public class DrugController {
         System.out.println(drugs.get(0).getDrugCode());
     }
 
-    private void handleEdit(DrugViewEntity drug) {
-        // Implement edit logic here
-        System.out.println("Editing drug: " + drug.getDrugCode());
+    @FXML
+    private void handleEdit(DrugViewEntity drugViewEntity) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/UpdateDrug.fxml"));
+            Parent root = loader.load();
+
+            UpdateDrugController controller = loader.getController();
+
+            // Convert DrugViewEntity to DrugEntity if necessary or directly pass if they are effectively the same
+            DrugEntity selectedDrug = convertToDrugEntity(drugViewEntity);
+            controller.setDrug(selectedDrug);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Update Drug");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle exception (e.g., show an error dialog)
+        }
     }
+
+private DrugEntity convertToDrugEntity(DrugViewEntity drugViewEntity) {
+    // This method assumes DrugViewEntity and DrugEntity have similar fields.
+    // Implement conversion logic based on your application's requirements.
+    return new DrugEntity(drugViewEntity.getId(), drugViewEntity.getName(), drugViewEntity.getDrugCode(), drugViewEntity.getQuantity(), drugViewEntity.getPrice(), drugViewEntity.getSupplierId(), drugViewEntity.getCreatedAt(), drugViewEntity.getUpdatedAt());
+}
 
     private void handleDelete(DrugViewEntity drug) {
         // Implement delete logic here

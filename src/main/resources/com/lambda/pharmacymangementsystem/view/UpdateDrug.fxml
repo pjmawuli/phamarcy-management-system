@@ -30,15 +30,16 @@
          <font>
             <Font size="14.0" />
          </font></Text>
-      <TextField id="drugCodeField" editable="false" layoutX="80.0" layoutY="91.0" promptText="Drug Code" />
-      <TextField id="nameField" layoutX="80.0" layoutY="160.0" />
-      <TextField id="quantityField" layoutX="80.0" layoutY="214.0" />
-      <TextField id="priceField" layoutX="80.0" layoutY="278.0" />
-      <Button layoutX="103.0" layoutY="383.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0" style="-fx-background-color: red;" text="Update" textFill="WHITE">
+      <TextField fx:id="drugCodeField" layoutX="80.0" layoutY="100.0" />
+      <TextField fx:id="nameField" layoutX="80.0" layoutY="160.0" />
+      <TextField fx:id="quantityField" layoutX="80.0" layoutY="214.0" />
+      <TextField fx:id="priceField" layoutX="80.0" layoutY="278.0" />
+
+      <Button layoutX="103.0" layoutY="383.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0" style="-fx-background-color: red;" text="Update" textFill="WHITE" onAction="#handleUpdateAction">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <ComboBox id="supplierComboBox" layoutX="83.0" layoutY="342.0" prefWidth="150.0" />
+      <ComboBox fx:id="supplierComboBox" layoutX="83.0" layoutY="342.0" prefWidth="150.0" />
       <Text layoutX="83.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drug Code" />
    </children>
 </AnchorPane>
