@@ -14,14 +14,16 @@ import java.util.List;
 public class UpdateDrugController {
 
     @FXML
-    private TextField nameField;
+    public TextField nameField;
 
     @FXML
-    private TextField quantityField;
+    public TextField quantityField;
+
     @FXML
-    private TextField priceField;
+    public TextField priceField;
+
     @FXML
-    private ComboBox<SupplierEntity> supplierComboBox;
+    public ComboBox<SupplierEntity> supplierComboBox;
 
     private DrugEntity currentDrug;
 
