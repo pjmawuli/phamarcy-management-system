@@ -17,8 +17,7 @@ public class UpdateDrugController {
 
     @FXML
     private TextField nameField;
-    @FXML
-    private TextField codeField;
+
     @FXML
     private TextField quantityField;
     @FXML
@@ -39,7 +38,6 @@ public class UpdateDrugController {
 
     private void loadDrugDetails() {
         nameField.setText(currentDrug.getName());
-        codeField.setText(currentDrug.getDrugCode());
         quantityField.setText(String.valueOf(currentDrug.getQuantity()));
         priceField.setText(String.valueOf(currentDrug.getPrice()));
         // Set the supplier in the combo box based on currentDrug's supplierId
@@ -74,7 +72,6 @@ public class UpdateDrugController {
              PreparedStatement st = conn.prepareStatement("UPDATE drugs SET name = ?, drug_code = ?, quantity = ?, price = ?, supplier_id = ? WHERE id = ?")) {
 
             st.setString(1, nameField.getText());
-            st.setString(2, codeField.getText());
             st.setInt(3, Integer.parseInt(quantityField.getText()));
             st.setDouble(4, Double.parseDouble(priceField.getText()));
             st.setInt(5, supplierComboBox.getValue().getId());
