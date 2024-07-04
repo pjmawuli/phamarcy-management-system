@@ -25,6 +25,9 @@ public class AddDrugController {
     public ComboBox<String> supplierComboBox;
 
     @FXML
+    public TextField priceField;
+
+    @FXML
     public Button addButton;
 
     private final HashMap<String, Integer> supplierMap = new HashMap<>();
