@@ -13,7 +13,7 @@ public class Database {
     public Connection conn;
 
     // create connection
-    public Connection connectDatabase() {
+    public static Connection connectDatabase() {
         try {
             conn = DriverManager.getConnection(databaseUrl);
         } catch (Exception e) {
