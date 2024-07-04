@@ -3,7 +3,6 @@ module com.lambda.pharmacymangementsystem {
     requires javafx.fxml;
     requires java.sql;
     requires org.postgresql.jdbc;
-    requires formsfx.core;
 
 
     opens com.lambda.pharmacymangementsystem to javafx.fxml;

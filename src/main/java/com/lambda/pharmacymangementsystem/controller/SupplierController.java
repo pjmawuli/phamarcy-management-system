@@ -66,7 +66,7 @@ public class SupplierController {
         try {
             List<SupplierEntity> suppliersList = SupplierFunctions.getAllSuppliers();
             if (!suppliersList.isEmpty()) {
-                suppliers.addAll(suppliersList);
+                suppliers.setAll(suppliersList);
             }
         } catch (Exception e) {
             System.out.println("Error loading suppliers: " + e.getMessage());
