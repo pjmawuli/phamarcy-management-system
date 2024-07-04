@@ -3,7 +3,6 @@ package com.lambda.pharmacymangementsystem.test;
 import com.lambda.pharmacymangementsystem.model.entities.DrugEntity;
 import com.lambda.pharmacymangementsystem.model.entities.DrugViewEntity;
 import com.lambda.pharmacymangementsystem.model.functions.DrugFunctions;
-import com.lambda.pharmacymangementsystem.utils.Drug;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -69,10 +68,7 @@ public class DrugFunctionsTest {
 
     private static void testAddOneDrug() {
         try {
-//            get recent drug code and add find the next code
-            String recentDrugCode = DrugFunctions.getRecentDrugCode();
-            String nextDrugCode = Drug.generateNextDrugCode(recentDrugCode);
-            DrugEntity drug = new DrugEntity("Test Drug", nextDrugCode, 10, 25.0, 1);
+            DrugEntity drug = new DrugEntity("Test Drug", 10, 25.0, 1);
             DrugFunctions.addOneDrug(drug);
             System.out.println("Drug added successfully.");
         } catch (SQLException e) {

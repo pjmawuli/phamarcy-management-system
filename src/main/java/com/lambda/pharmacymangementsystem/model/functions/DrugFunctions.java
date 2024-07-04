@@ -3,6 +3,7 @@ package com.lambda.pharmacymangementsystem.model.functions;
 import com.lambda.pharmacymangementsystem.model.Database;
 import com.lambda.pharmacymangementsystem.model.entities.DrugEntity;
 import com.lambda.pharmacymangementsystem.model.entities.DrugViewEntity;
+import com.lambda.pharmacymangementsystem.utils.Drug;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -26,10 +27,15 @@ public class DrugFunctions {
                         Connection conn = db.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("INSERT INTO drugs (name, drug_code, quantity, price, supplier_id) VALUES (?, ?, ?, ?, ?)")
                 ) {
+            // get the drug code
+            String recentDrugCode = getRecentDrugCode();
+
+            // generate next drug code
+            String nextDrugCode = Drug.generateNextDrugCode(recentDrugCode);
 
 //            bind inputs
             st.setString(1, drug.getName());
-            st.setString(2, drug.getDrugCode());
+            st.setString(2, nextDrugCode);
             st.setInt(3, drug.getQuantity());
             st.setDouble(4, drug.getPrice());
             st.setInt(5, drug.getSupplierId());
