@@ -95,7 +95,7 @@ public class DrugFunctionsTest {
 
     private static void testUpdateOneDrug(int id) {
         try {
-            DrugEntity drug = new DrugEntity("Updated Drug", "UPD001", 20, 30.0, 1);
+            DrugEntity drug = new DrugEntity("Updated Drug", 20, 30.0, 1);
             DrugFunctions.updateOneDrug(id, drug);
             System.out.println("Drug updated successfully.");
         } catch (SQLException e) {

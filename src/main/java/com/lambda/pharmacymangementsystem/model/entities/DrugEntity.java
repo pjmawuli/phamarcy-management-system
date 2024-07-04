@@ -29,6 +29,14 @@ public class DrugEntity {
         this.supplier_id = supplier_id;
     }
 
+    // define constructor for update
+    public DrugEntity(String name, int quantity, double price, int supplier_id) {
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        this.supplier_id = supplier_id;
+    }
+
     public int getId() {
         return id;
     }
