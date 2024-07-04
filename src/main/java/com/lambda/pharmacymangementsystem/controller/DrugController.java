@@ -41,6 +41,7 @@ public class DrugController {
     // Initialization method
     @FXML
     private void initialize() {
+        ControllerManager.getInstance().setDrugController(this);
         DataExport exportUtils = new DataExport();
         datatable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -69,7 +70,6 @@ public class DrugController {
         // bind the action to the add drug button
 //        addButton.setOnAction(actionEvent -> handleAdd());
 
-        DataExport.exportToCSV("C:\\Users\\LAPTOP\\Documents\\projects\\school\\phamarcy-management-system\\drugs.csv", "drugs_view");
     }
 
     public void loadDrugs() {
@@ -82,6 +82,11 @@ public class DrugController {
             System.out.println("Error loading drugs: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public void refreshDrugsTable() {
+        drugs.clear(); // Clear the current list
+        loadDrugs(); // Reload drugs from the database
     }
 
     private void handleAdd() {
