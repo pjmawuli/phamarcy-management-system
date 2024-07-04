@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -112,9 +113,11 @@ public class DrugController {
             controller.setDrug(selectedDrug);
 
             Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);// Prevent user from interacting with other windows
             stage.setScene(new Scene(root));
+            stage.setAlwaysOnTop(true);
             stage.setTitle("Update Drug");
-            stage.show();
+            stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
             // Handle exception (e.g., show an error dialog)
