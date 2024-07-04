@@ -75,6 +75,11 @@ public class SupplierController {
     }
 
 
+    @FXML
+    private void showAddSupplier() {
+        System.out.println("Load supplier view");
+    }
+
     private void handleEdit(SupplierEntity supplier) {
         // Implement edit logic here
         System.out.println("Editing supplier: " + supplier.getId());
