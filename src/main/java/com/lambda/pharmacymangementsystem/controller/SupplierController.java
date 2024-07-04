@@ -1,25 +1,16 @@
 package com.lambda.pharmacymangementsystem.controller;
 
-import com.dlsc.formsfx.model.structure.Field;
-import com.dlsc.formsfx.model.structure.Form;
-import com.dlsc.formsfx.model.structure.Group;
-import com.dlsc.formsfx.view.renderer.FormRenderer;
 import com.lambda.pharmacymangementsystem.model.entities.SupplierEntity;
 import com.lambda.pharmacymangementsystem.model.functions.SupplierFunctions;
 import com.lambda.pharmacymangementsystem.utils.TableActionButtons;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -68,6 +59,10 @@ public class SupplierController {
         datatable.getColumns().add(actionColumn);
 
         // load data into table view
+        loadSuppliers();
+    }
+
+    public void loadSuppliers() {
         try {
             List<SupplierEntity> suppliersList = SupplierFunctions.getAllSuppliers();
             if (!suppliersList.isEmpty()) {
@@ -83,51 +78,27 @@ public class SupplierController {
     private void handleEdit(SupplierEntity supplier) {
         // Implement edit logic here
         System.out.println("Editing supplier: " + supplier.getId());
+
+        // load edit supplier page and load the controller
+
+        // pass supplier data into the loadSupplier function
+
+        // create a new stage and load into view
+
+        // refresh list
+        loadSuppliers();
     }
 
     private void handleDelete(SupplierEntity supplier) {
         // Implement delete logic here
-        System.out.println("Deleting supplier: " + supplier.getName());
-    }
+        try {
+            SupplierFunctions.deleteOneSupplier(supplier.getId());
 
-
-    public void showAddSupplier(ActionEvent actionEvent) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/forms/add-supplier-view.fxml"));
-//            Scene scene = new Scene(loader.load());
-//
-//            Stage stage = new Stage();
-//            stage.initModality(Modality.APPLICATION_MODAL);
-//            stage.setScene(scene);
-//
-//            stage.showAndWait();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        SupplierEntity drug = new SupplierEntity();
-//
-        Form form = Form.of(
-                Group.of(
-                        Field.ofStringType("").label("Name").placeholder("Enter supplier name").required(true),
-                        Field.ofStringType("").label("Contact").placeholder("Enter supplier contact"),
-                        Field.ofStringType("").label("Location").placeholder("Enter supplier location")
-                )
-        ).title("Add New Supplier");
-
-        FormRenderer formRenderer = new FormRenderer(form);
-
-        VBox formContainer = new VBox(formRenderer);
-        Scene scene = new Scene(formContainer);
-
-        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.WINDOW_MODAL);
-        dialogStage.initStyle(StageStyle.UTILITY);
-        dialogStage.setScene(scene);
-        dialogStage.showAndWait();
-
-        if (form.isValid()) {
-            System.out.println("Success");
-//            saveDrug(drug);
+            //refresh list
+            suppliers.remove(supplier);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+
 }
