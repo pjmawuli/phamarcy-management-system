@@ -88,6 +88,47 @@ public class DrugFunctions {
         return null;
     }
 
+    // get all drugs count
+    public static int getAllDrugsCount() throws SQLException {
+//        use `try with resources` to automatically release the resources when done
+        try
+                (
+                        Connection conn = Database.connectDatabase();
+                        Statement st = conn.createStatement()
+                ) {
+
+//            execute the query
+            ResultSet rs = st.executeQuery("SELECT COUNT(*) AS total_drugs FROM drugs");
+            if (rs.next()) return rs.getInt("total_drugs");
+        } catch (Exception e) {
+//            TODO: handle errors properly
+            System.out.println("Could not retrieve drugs");
+            e.printStackTrace();
+            throw e;
+        }
+        return 0;
+    }
+
+    // get all low in stock drugs count
+    public static int getAllLowInStockDrugsCount() throws SQLException {
+//        use `try with resources` to automatically release the resources when done
+        try
+                (
+                        Connection conn = Database.connectDatabase();
+                        Statement st = conn.createStatement()
+                ) {
+
+//            execute the query
+            ResultSet rs = st.executeQuery("SELECT COUNT(*) AS total_low_in_stock_drugs FROM drugs WHERE quantity = 0");
+            if (rs.next()) return rs.getInt("total_low_in_stock_drugs");
+        } catch (Exception e) {
+//            TODO: handle errors properly
+            System.out.println("Could not retrieve drugs with low stock");
+            e.printStackTrace();
+            throw e;
+        }
+        return 0;
+    }
 
     //    get all drugs
     public static List<DrugViewEntity> getAllDrugs() throws SQLException {

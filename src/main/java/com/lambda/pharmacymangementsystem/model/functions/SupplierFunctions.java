@@ -102,6 +102,28 @@ public class SupplierFunctions {
         return null;
     }
 
+    // get all drugs count
+    public static int getAllSuppliersCount() throws SQLException {
+//        use `try with resources` to automatically release the resources when done
+        try
+                (
+                        Connection conn = Database.connectDatabase();
+                        Statement st = conn.createStatement()
+                ) {
+
+//            execute the query
+            ResultSet rs = st.executeQuery("SELECT COUNT(*) AS total_suppliers FROM suppliers");
+            if (rs.next()) return rs.getInt("total_suppliers");
+        } catch (Exception e) {
+//            TODO: handle errors properly
+            System.out.println("Could not retrieve suppliers");
+            e.printStackTrace();
+            throw e;
+        }
+        return 0;
+    }
+
+
     //    update one supplier
     public static void updateOneSupplier(int id, SupplierEntity supplier) throws SQLException {
 
