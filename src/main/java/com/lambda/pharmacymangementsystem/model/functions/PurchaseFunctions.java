@@ -14,11 +14,12 @@ import java.util.List;
  * @hidden rs: the result set returned from the query
  */
 public class PurchaseFunctions {
+    static Database db = new Database();
 
     // add one purchase
     public static void addOnePurchase(PurchaseEntity purchase) throws SQLException, Exception {
 
-        Connection conn = Database.connectDatabase();
+        Connection conn = db.connectDatabase();
         try {
 //          disable the default autocommit behavior of the pgdbc driver for transactions
             conn.setAutoCommit(false);
@@ -59,7 +60,7 @@ public class PurchaseFunctions {
      */
     public static void addManyPurchases(List<PurchaseEntity> purchases) throws SQLException, Exception {
 
-        Connection conn = Database.connectDatabase();
+        Connection conn = db.connectDatabase();
         try {
 //            disable the default autocommit behavior of the pgdbc driver for transactions
             conn.setAutoCommit(false);
@@ -117,7 +118,7 @@ public class PurchaseFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = Database.connectDatabase();
+                        Connection conn = db.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("SELECT * FROM purchases_view WHERE id = ?")
                 ) {
 
@@ -160,7 +161,7 @@ public class PurchaseFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = Database.connectDatabase();
+                        Connection conn = db.connectDatabase();
                         Statement st = conn.createStatement()
                 ) {
 
@@ -202,7 +203,7 @@ public class PurchaseFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = Database.connectDatabase();
+                        Connection conn = db.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("DELETE FROM purchases WHERE id = ?")
                 ) {
 
@@ -224,7 +225,7 @@ public class PurchaseFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = Database.connectDatabase();
+                        Connection conn = db.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("SELECT purchase_code FROM purchases ORDER BY purchase_code DESC LIMIT 1")
                 ) {
 

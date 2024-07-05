@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardFunctions {
+    static Database db = new Database();
 
     /**
      * @return - DashoardEntity : a summary of all dashboard statistics in the pharmacy
@@ -20,7 +21,7 @@ public class DashboardFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = Database.connectDatabase();
+                        Connection conn = db.connectDatabase();
                         Statement st = conn.createStatement()
                 ) {
 

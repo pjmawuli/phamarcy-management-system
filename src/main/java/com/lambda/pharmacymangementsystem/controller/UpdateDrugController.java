@@ -14,9 +14,6 @@ import java.util.List;
 public class UpdateDrugController {
 
     @FXML
-    public TextField drugCodeField;
-
-    @FXML
     private TextField nameField;
 
     @FXML
@@ -41,7 +38,6 @@ public class UpdateDrugController {
         nameField.setText(currentDrug.getName());
         quantityField.setText(String.valueOf(currentDrug.getQuantity()));
         priceField.setText(String.valueOf(currentDrug.getPrice()));
-        drugCodeField.setText(currentDrug.getDrugCode());
         // Set the supplier in the combo box based on currentDrug's supplierId
     }
 
