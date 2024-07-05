@@ -10,10 +10,10 @@ import java.sql.DriverManager;
  */
 public class Database {
     private static final String databaseUrl = "jdbc:postgresql://localhost/lambda_pharmacy_db?user=postgres&password=postgres";
-    public Connection conn;
+    public static Connection conn;
 
     // create connection
-    public Connection connectDatabase() {
+    public static Connection connectDatabase() {
         try {
             conn = DriverManager.getConnection(databaseUrl);
         } catch (Exception e) {

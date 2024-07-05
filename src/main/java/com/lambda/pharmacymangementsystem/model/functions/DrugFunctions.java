@@ -16,7 +16,6 @@ import java.util.Map;
  * @hidden rs: the result set returned from the query
  */
 public class DrugFunctions {
-    static Database db = new Database();
 
     // add one drug
     public static void addOneDrug(DrugEntity drug) throws SQLException {
@@ -24,7 +23,7 @@ public class DrugFunctions {
 //        `use try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("INSERT INTO drugs (name, drug_code, quantity, price, supplier_id) VALUES (?, ?, ?, ?, ?)")
                 ) {
             // get the drug code
@@ -55,7 +54,7 @@ public class DrugFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("SELECT * FROM drugs_view WHERE id = ?")
                 ) {
 
@@ -96,7 +95,7 @@ public class DrugFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         Statement st = conn.createStatement()
                 ) {
 
@@ -135,20 +134,20 @@ public class DrugFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("UPDATE drugs SET name = ?, drug_code = ?, quantity = ?, price = ?, supplier_id = ? WHERE id = ?")
+                        Connection conn = Database.connectDatabase();
+                        PreparedStatement st = conn.prepareStatement("UPDATE drugs SET name = ?, quantity = ?, price = ?, supplier_id = ? WHERE id = ?")
                 ) {
 
 //            bind inputs
             st.setString(1, drug.getName());
-            st.setString(2, drug.getDrugCode());
-            st.setInt(3, drug.getQuantity());
-            st.setDouble(4, drug.getPrice());
-            st.setInt(5, drug.getSupplierId());
-            st.setInt(6, id);
+            st.setInt(2, drug.getQuantity());
+            st.setDouble(3, drug.getPrice());
+            st.setInt(4, drug.getSupplierId());
+            st.setInt(5, id);
 
 //            execute the query
-            st.executeUpdate();
+            int rs = st.executeUpdate();
+            if (rs < 1) throw new SQLException("Drug not found");
         } catch (Exception e) {
 //            TODO: handle errors properly
             System.out.println("Could not update drug");
@@ -165,7 +164,7 @@ public class DrugFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("DELETE FROM drugs WHERE id = ?")
                 ) {
 
@@ -173,7 +172,8 @@ public class DrugFunctions {
             st.setInt(1, id);
 
 //            execute the query
-            st.executeUpdate();
+            int rs = st.executeUpdate();
+            if (rs < 1) throw new SQLException("Drug not found");
         } catch (Exception e) {
 //            TODO: handle errors properly
             System.out.println("Could not delete drug");
@@ -188,7 +188,7 @@ public class DrugFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("SELECT drug_code FROM drugs ORDER BY drug_code DESC LIMIT 1")
                 ) {
 
@@ -244,7 +244,7 @@ public class DrugFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         PreparedStatement st = conn.prepareStatement(query.toString())
                 ) {
 
@@ -285,7 +285,7 @@ public class DrugFunctions {
     //    update drug stock
     public static void updateOneDrugStock(int id, int quantity) throws SQLException, Exception {
 
-        Connection conn = db.connectDatabase();
+        Connection conn = Database.connectDatabase();
         try {
 //          disable the default autocommit behavior of the pgdbc driver for transactions
             conn.setAutoCommit(false);
