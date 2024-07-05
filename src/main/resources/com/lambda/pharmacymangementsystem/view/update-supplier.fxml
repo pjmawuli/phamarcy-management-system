@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="374.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/22"
+            fx:controller="com.lambda.pharmacymangementsystem.controller.UpdateSupplierController"
+            stylesheets="@styles.css">
+    <children>
+        <Text layoutX="99.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Supplier">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text id="nameField" layoutX="99.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <Text id="contactField" layoutX="99.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <Text id="locationField" layoutX="103.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location"
+              wrappingWidth="64.0000122070312">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <Button layoutX="142.0" layoutY="321.0" mnemonicParsing="false" style="-fx-background-color: red;"
+                text="Update">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <TextField fx:id="nameField" layoutX="99.0" layoutY="109.0"/>
+        <TextField fx:id="contactField" layoutX="99.0" layoutY="198.0"/>
+        <TextField fx:id="locationField" layoutX="99.0" layoutY="271.0"/>
+    </children>
+</AnchorPane>
