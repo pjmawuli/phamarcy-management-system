@@ -9,7 +9,7 @@
 
 <AnchorPane fx:controller="com.lambda.pharmacymangementsystem.controller.UpdateDrugController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="110.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Drug">
+      <Text layoutX="110.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make Your Changes to drug">
          <font>
             <Font size="18.0" />
          </font>
@@ -30,8 +30,7 @@
          <font>
             <Font size="14.0" />
          </font></Text>
-      <TextField fx:id="drugCodeField" layoutX="80.0" layoutY="100.0" />
-      <TextField fx:id="nameField" layoutX="80.0" layoutY="160.0" />
+      <TextField fx:id="drugCodeField" layoutX="80.0" layoutY="100.0" editable="false" focusTraversable="false" style="-fx-opacity: 0.5; -fx-background-color: #E0E0E0;"/>      <TextField fx:id="nameField" layoutX="80.0" layoutY="160.0" />
       <TextField fx:id="quantityField" layoutX="80.0" layoutY="214.0" />
       <TextField fx:id="priceField" layoutX="80.0" layoutY="278.0" />
 
