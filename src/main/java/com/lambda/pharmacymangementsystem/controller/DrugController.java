@@ -115,13 +115,9 @@ public class DrugController {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);// Prevent user from interacting with other windows
             stage.setScene(new Scene(root));
+            stage.setAlwaysOnTop(true);
             stage.setTitle("Update Drug");
             stage.showAndWait();
-
-            //window sizing
-            stage.setMinWidth(700);
-            stage.setMinHeight(800);
-
         } catch (IOException e) {
             e.printStackTrace();
             // Handle exception (e.g., show an error dialog)
@@ -129,7 +125,8 @@ public class DrugController {
     }
 
 private DrugEntity convertToDrugEntity(DrugViewEntity drugViewEntity) {
-    // Implement conversion logic here
+    // This method assumes DrugViewEntity and DrugEntity have similar fields.
+    // Implement conversion logic based on your application's requirements.
     return new DrugEntity(drugViewEntity.getId(), drugViewEntity.getName(), drugViewEntity.getDrugCode(), drugViewEntity.getQuantity(), drugViewEntity.getPrice(), drugViewEntity.getSupplierId(), drugViewEntity.getCreatedAt(), drugViewEntity.getUpdatedAt());
 }
 

@@ -13,7 +13,6 @@ import java.util.List;
  * @hidden rs: the result set returned from the query
  */
 public class SupplierFunctions {
-    static Database db = new Database();
 
     //    get all suppliers
     public static List<SupplierEntity> getAllSuppliers() throws SQLException {
@@ -21,7 +20,7 @@ public class SupplierFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         Statement st = conn.createStatement()
                 ) {
 
@@ -52,7 +51,7 @@ public class SupplierFunctions {
 //        `use try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("INSERT INTO suppliers (name, contact, location) VALUES (?, ?, ?)")
                 ) {
 
@@ -76,7 +75,7 @@ public class SupplierFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("SELECT * FROM suppliers WHERE id = ?")
                 ) {
 
@@ -109,7 +108,7 @@ public class SupplierFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("UPDATE suppliers SET name = ?, contact = ?, location = ? WHERE id = ?")
                 ) {
 
@@ -120,7 +119,8 @@ public class SupplierFunctions {
             st.setInt(4, id);
 
 //            execute the query
-            st.executeUpdate();
+            int rs = st.executeUpdate();
+            if (rs < 1) throw new SQLException("Supplier not found");
         } catch (Exception e) {
 //            TODO: handle errors properly
             System.out.println("Could not update supplier");
@@ -137,7 +137,7 @@ public class SupplierFunctions {
 //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = db.connectDatabase();
+                        Connection conn = Database.connectDatabase();
                         PreparedStatement st = conn.prepareStatement("DELETE FROM suppliers WHERE id = ?")
                 ) {
 
@@ -145,7 +145,8 @@ public class SupplierFunctions {
             st.setInt(1, id);
 
 //            execute the query
-            st.executeUpdate();
+            int rs = st.executeUpdate();
+            if (rs < 1) throw new SQLException("Supplier not found");
         } catch (Exception e) {
 //            TODO: handle errors properly
             System.out.println("Could not delete supplier");
