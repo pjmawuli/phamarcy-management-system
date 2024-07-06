@@ -39,7 +39,7 @@
         <TextField fx:id="quantityField" layoutX="80.0" layoutY="214.0"/>
         <TextField fx:id="priceField" layoutX="80.0" layoutY="278.0"/>
         <Button layoutX="103.0" layoutY="383.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0"
-                style="-fx-background-color: red;" text="Update" textFill="WHITE">
+                style="-fx-background-color: red;" text="Update" textFill="WHITE" onAction="#handleUpdateAction" >
             <font>
                 <Font size="14.0"/>
             </font>

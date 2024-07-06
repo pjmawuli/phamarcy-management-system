@@ -96,14 +96,28 @@ public class DrugController {
         loadDrugs(); // Reload drugs from the database
     }
 
+    @FXML
     private void handleAdd() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/add-drug-view.fxml"));            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);// Prevent user from interacting with other windows
+            stage.setScene(new Scene(root));
+            stage.setAlwaysOnTop(true);
+            stage.setTitle("Add Drug");
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle exception (e.g., show an error dialog)
+        }
         System.out.println(drugs.get(0).getDrugCode());
     }
 
     @FXML
     private void handleEdit(DrugViewEntity drugViewEntity) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/UpdateDrug.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/update-drug.fxml"));
             Parent root = loader.load();
 
             UpdateDrugController controller = loader.getController();

@@ -11,7 +11,7 @@
     <HBox styleClass="page-header">
         <Label text="Drugs" styleClass="page-title"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Button text="Add New Drug" styleClass="add-button"/>
+        <Button text="Add New Drug" styleClass="add-button" onAction="#handleAdd"/>
     </HBox>
 
     <TableView fx:id="datatable" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" styleClass="drug-table">
