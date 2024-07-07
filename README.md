@@ -15,4 +15,4 @@ This project is a Pharmacy Management System developed for the DCIT308: Data Str
 
 - **Java**
 - **JavaFX**
-- **Postgrsql**
+- **POSTGRESQL**
