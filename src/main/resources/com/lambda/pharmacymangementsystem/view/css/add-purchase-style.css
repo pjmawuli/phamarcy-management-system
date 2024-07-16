@@ -1,0 +1,23 @@
+.custom-text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #CCCCCC transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+.custom-text-field:focused {
+    -fx-border-color: transparent transparent #FF0000 transparent;
+}
+
+.custom-combo-box {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #CCCCCC transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+.custom-combo-box:focused {
+    -fx-border-color: transparent transparent #FF0000 transparent;
+}
+
+.custom-combo-box > .arrow-button {
+    -fx-background-color: transparent;
+}
