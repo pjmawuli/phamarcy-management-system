@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -103,17 +104,31 @@ public class SupplierController {
     }
 
     private void handleEdit(SupplierEntity supplier) {
-        // Implement edit logic here
-        System.out.println("Editing supplier: " + supplier.getId());
+        try {
+            // load edit supplier page and load the controller
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/update-supplier.fxml"));
+            Parent root = loader.load();
 
-        // load edit supplier page and load the controller
+            UpdateSupplierController controller = loader.getController();
 
-        // pass supplier data into the loadSupplier function
+            // pass supplier data into the loadSupplier function
+            controller.loadSupplier(supplier);
 
-        // create a new stage and load into view
+            // create a new stage and load into view
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.setAlwaysOnTop(false);
+            stage.setTitle("Update Supplier");
 
-        // refresh list
-        loadSuppliers();
+            // wait for user input
+            stage.showAndWait();
+
+            // refresh list
+            loadSuppliers();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleDelete(SupplierEntity supplier) {

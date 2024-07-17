@@ -37,7 +37,7 @@ public class SupplierFunctions {
                 suppliers.add(newSupplier);
             }
             return suppliers;
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve suppliers");
             e.printStackTrace();
@@ -62,7 +62,7 @@ public class SupplierFunctions {
 
 //            execute the query
             st.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not add suppliers");
             e.printStackTrace();
@@ -93,7 +93,7 @@ public class SupplierFunctions {
                         rs.getObject("created_at", LocalDateTime.class),
                         rs.getObject("updated_at", LocalDateTime.class));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve supplier");
             e.printStackTrace();
@@ -114,7 +114,7 @@ public class SupplierFunctions {
 //            execute the query
             ResultSet rs = st.executeQuery("SELECT COUNT(*) AS total_suppliers FROM suppliers");
             if (rs.next()) return rs.getInt("total_suppliers");
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve suppliers");
             e.printStackTrace();
@@ -143,7 +143,7 @@ public class SupplierFunctions {
 //            execute the query
             int rs = st.executeUpdate();
             if (rs < 1) throw new SQLException("Supplier not found");
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not update supplier");
             e.printStackTrace();
@@ -169,7 +169,7 @@ public class SupplierFunctions {
 //            execute the query
             int rs = st.executeUpdate();
             if (rs < 1) throw new SQLException("Supplier not found");
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not delete supplier");
             e.printStackTrace();

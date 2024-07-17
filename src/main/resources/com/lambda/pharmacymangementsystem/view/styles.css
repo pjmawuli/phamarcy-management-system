@@ -185,25 +185,27 @@
     -fx-font-size: 18px;
     -fx-font-weight: bold;
 }
-/**
-.text-field {
-    -fx-pref-height: 35px;
-    -fx-background-color: #f3f4f6;
-    -fx-background-radius: 4px;
-    -fx-border-color: #e5e7eb;
-    -fx-border-radius: 4px;
-    -fx-padding: 0 10px;
+
+.custom-text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #CCCCCC transparent;
+    -fx-border-width: 0 0 2 0;
 }
 
-.button {
-    -fx-background-color: #3b82f6;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-padding: 10px 20px;
-    -fx-background-radius: 4px;
+.custom-text-field:focused {
+    -fx-border-color: transparent transparent #FF0000 transparent;
 }
 
-.button:hover {
-    -fx-background-color: #2563eb;
+.custom-combo-box {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #CCCCCC transparent;
+    -fx-border-width: 0 0 2 0;
 }
-*/
+
+.custom-combo-box:focused {
+    -fx-border-color: transparent transparent #FF0000 transparent;
+}
+
+.custom-combo-box > .arrow-button {
+    -fx-background-color: transparent;
+}

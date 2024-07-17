@@ -34,12 +34,13 @@
                 <Font size="14.0"/>
             </font>
         </Text>
-        <TextField fx:id="drugCodeField" editable="false" layoutX="80.0" layoutY="91.0" promptText="Drug Code"/>
-        <TextField fx:id="nameField" layoutX="80.0" layoutY="160.0"/>
-        <TextField fx:id="quantityField" layoutX="80.0" layoutY="214.0"/>
-        <TextField fx:id="priceField" layoutX="80.0" layoutY="278.0"/>
+        <TextField fx:id="drugCodeField" styleClass=".custom-text-field" editable="false" layoutX="80.0" layoutY="91.0"
+                   promptText="Drug Code"/>
+        <TextField fx:id="nameField" styleClass=".custom-text-field" layoutX="80.0" layoutY="160.0"/>
+        <TextField fx:id="quantityField" styleClass=".custom-text-field" layoutX="80.0" layoutY="214.0"/>
+        <TextField fx:id="priceField" styleClass=".custom-text-field" layoutX="80.0" layoutY="278.0"/>
         <Button layoutX="103.0" layoutY="383.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0"
-                style="-fx-background-color: red;" text="Update" textFill="WHITE" onAction="#handleUpdateAction" >
+                style="-fx-background-color: red;" text="Update" textFill="WHITE" onAction="#handleUpdateAction">
             <font>
                 <Font size="14.0"/>
             </font>

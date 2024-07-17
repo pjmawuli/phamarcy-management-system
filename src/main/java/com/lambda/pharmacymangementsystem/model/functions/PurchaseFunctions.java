@@ -198,7 +198,7 @@ public class PurchaseFunctions {
 //            execute the query
             ResultSet rs = st.executeQuery();
             if (rs.next()) return rs.getInt("total_today_purchases");
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve purchases");
             e.printStackTrace();
@@ -239,7 +239,7 @@ public class PurchaseFunctions {
                 purchases.add(newPurchase);
             }
             return purchases;
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve purchases");
             e.printStackTrace();
@@ -264,7 +264,7 @@ public class PurchaseFunctions {
 
 //            execute the query
             st.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not delete purchase");
             e.printStackTrace();
@@ -286,7 +286,7 @@ public class PurchaseFunctions {
             if (rs.next()) {
                 return rs.getString("purchase_code");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve recent purchase code");
             e.printStackTrace();

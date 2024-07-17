@@ -16,13 +16,17 @@
                 <Font size="16.0"/>
             </font>
         </Text>
-        <Button fx:id="addButton" layoutX="88.0" layoutY="307.0" mnemonicParsing="false" prefHeight="30.0"
+        <Button fx:id="addButton" styleClass=".custom-text-field" layoutX="88.0" layoutY="307.0" mnemonicParsing="false"
+                prefHeight="30.0"
                 prefWidth="108.0" text="SUBMIT"/>
-        <Text layoutX="75.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact"/>
-        <Text layoutX="80.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location"/>
-        <TextField fx:id="nameField" layoutX="76.0" layoutY="102.0"/>
-        <TextField fx:id="contactField" layoutX="75.0" layoutY="181.0"/>
-        <TextField fx:id="locationField" layoutX="75.0" layoutY="256.0"/>
-        <Text layoutX="80.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name"/>
+        <Text layoutX="75.0" layoutY="163.0" styleClass=".custom-text-field" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Contact"/>
+        <Text layoutX="80.0" layoutY="245.0" styleClass=".custom-text-field" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Location"/>
+        <TextField fx:id="nameField" layoutX="76.0" styleClass=".custom-text-field" layoutY="102.0"/>
+        <TextField fx:id="contactField" layoutX="75.0" styleClass=".custom-text-field" layoutY="181.0"/>
+        <TextField fx:id="locationField" layoutX="75.0" styleClass=".custom-text-field" layoutY="256.0"/>
+        <Text layoutX="80.0" layoutY="89.0" styleClass=".custom-text-field" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Name"/>
     </children>
 </AnchorPane>

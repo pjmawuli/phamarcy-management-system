@@ -5,11 +5,6 @@ import com.lambda.pharmacymangementsystem.model.entities.DrugEntity;
 import com.lambda.pharmacymangementsystem.model.entities.DrugViewEntity;
 import com.lambda.pharmacymangementsystem.utils.Drug;
 
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -46,7 +41,7 @@ public class DrugFunctions {
 
 //            execute the query
             st.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not add drug");
             e.printStackTrace();
@@ -84,7 +79,7 @@ public class DrugFunctions {
                         rs.getObject("supplier_created_at", LocalDateTime.class),
                         rs.getObject("supplier_updated_at", LocalDateTime.class));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve drug");
             e.printStackTrace();
@@ -105,7 +100,7 @@ public class DrugFunctions {
 //            execute the query
             ResultSet rs = st.executeQuery("SELECT COUNT(*) AS total_drugs FROM drugs");
             if (rs.next()) return rs.getInt("total_drugs");
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve drugs");
             e.printStackTrace();
@@ -126,7 +121,7 @@ public class DrugFunctions {
 //            execute the query
             ResultSet rs = st.executeQuery("SELECT COUNT(*) AS total_low_in_stock_drugs FROM drugs WHERE quantity = 0");
             if (rs.next()) return rs.getInt("total_low_in_stock_drugs");
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve drugs with low stock");
             e.printStackTrace();
@@ -165,7 +160,7 @@ public class DrugFunctions {
                 drugs.add(newDrug);
             }
             return drugs;
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve drugs");
             e.printStackTrace();
@@ -194,7 +189,7 @@ public class DrugFunctions {
 //            execute the query
             int rs = st.executeUpdate();
             if (rs < 1) throw new SQLException("Drug not found");
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not update drug");
             e.printStackTrace();
@@ -220,7 +215,7 @@ public class DrugFunctions {
 //            execute the query
             int rs = st.executeUpdate();
             if (rs < 1) throw new SQLException("Drug not found");
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not delete drug");
             e.printStackTrace();
@@ -243,7 +238,7 @@ public class DrugFunctions {
             if (rs.next()) {
                 return rs.getString("drug_code");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve recent drug code");
             e.printStackTrace();
@@ -320,7 +315,7 @@ public class DrugFunctions {
                 drugs.add(newDrug);
             }
             return drugs;
-        } catch (Exception e) {
+        } catch (SQLException e) {
 //            TODO: handle errors properly
             System.out.println("Could not retrieve drugs");
             e.printStackTrace();
@@ -379,48 +374,48 @@ public class DrugFunctions {
         }
     }
 
-        public static double getDrugPriceByName(String drugName) throws SQLException {
-            double price = 0.0;
-            String sql = "SELECT price FROM drugs WHERE name = ?";
+    public static double getDrugPriceByName(String drugName) throws SQLException {
+        double price = 0.0;
+        String sql = "SELECT price FROM drugs WHERE name = ?";
 
-            try (Connection conn = Database.connectDatabase(); // Assume Database.connectDatabase() is a method that establishes a database connection
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Database.connectDatabase(); // Assume Database.connectDatabase() is a method that establishes a database connection
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                pstmt.setString(1, drugName);
-                ResultSet rs = pstmt.executeQuery();
+            pstmt.setString(1, drugName);
+            ResultSet rs = pstmt.executeQuery();
 
-                if (rs.next()) {
-                    price = rs.getDouble("price");
-                } else {
-                    throw new SQLException("Drug not found");
-                }
-            } catch (SQLException e) {
-                System.out.println("SQL Error: " + e.getMessage());
-                throw e;
+            if (rs.next()) {
+                price = rs.getDouble("price");
+            } else {
+                throw new SQLException("Drug not found");
             }
-
-            return price;
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+            throw e;
         }
 
-        public static int getDrugIdByName(String drugName) throws SQLException {
-            int id = -1; // Default or error value
-            String sql = "SELECT id FROM drugs WHERE name = ?";
+        return price;
+    }
 
-            try (Connection conn = Database.connectDatabase(); // Assume Database.connectDatabase() is a method that establishes a database connection
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    public static int getDrugIdByName(String drugName) throws SQLException {
+        int id = -1; // Default or error value
+        String sql = "SELECT id FROM drugs WHERE name = ?";
 
-                pstmt.setString(1, drugName);
-                ResultSet rs = pstmt.executeQuery();
+        try (Connection conn = Database.connectDatabase(); // Assume Database.connectDatabase() is a method that establishes a database connection
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                if (rs.next()) {
-                    id = rs.getInt("id");
-                } else {
-                    throw new SQLException("Drug not found");
-                }
-            } catch (SQLException e) {
-                System.out.println("SQL Error: " + e.getMessage());
-                throw e;
+            pstmt.setString(1, drugName);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                id = rs.getInt("id");
+            } else {
+                throw new SQLException("Drug not found");
             }
-            return id;
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+            throw e;
+        }
+        return id;
     }
 }
