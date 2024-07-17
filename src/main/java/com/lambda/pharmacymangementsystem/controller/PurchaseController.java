@@ -90,7 +90,6 @@ public class PurchaseController {
             Parent root = fxmlloader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.showAndWait();
 
