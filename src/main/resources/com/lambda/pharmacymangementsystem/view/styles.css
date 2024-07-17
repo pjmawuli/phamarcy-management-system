@@ -131,6 +131,10 @@
     -fx-fill: #4caf50;
 }
 
+.card-icon-danger {
+    -fx-fill: #f44336;
+}
+
 .card-title {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
@@ -140,6 +144,12 @@
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-padding: 10 0 0 0;
+}
+.card-value-low {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 0 0;
+    -fx-text-fill: #f44336;
 }
 
 /** action buttons */
