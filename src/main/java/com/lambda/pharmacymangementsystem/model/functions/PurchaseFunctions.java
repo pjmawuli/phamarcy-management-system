@@ -6,6 +6,7 @@ import com.lambda.pharmacymangementsystem.model.entities.PurchaseViewEntity;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,6 +154,52 @@ public class PurchaseFunctions {
         return null;
     }
 
+    // get all purchases count
+    public static int getAllPurchasesCount() throws SQLException {
+//        use `try with resources` to automatically release the resources when done
+        try
+                (
+                        Connection conn = Database.connectDatabase();
+                        Statement st = conn.createStatement()
+                ) {
+
+//            execute the query
+            ResultSet rs = st.executeQuery("SELECT COUNT( DISTINCT(purchase_code) ) AS total_purchases FROM purchases");
+            if (rs.next()) return rs.getInt("total_purchases");
+        } catch (Exception e) {
+//            TODO: handle errors properly
+            System.out.println("Could not retrieve purchases");
+            e.printStackTrace();
+            throw e;
+        }
+        return 0;
+    }
+
+    // get all purchases made today count
+    public static int getAllTodayPurchasesCount() throws SQLException {
+        LocalDateTime startDate = LocalDateTime.now().with(LocalTime.MIN);
+        LocalDateTime endDate = LocalDateTime.now().with(LocalTime.MAX);
+
+//        use `try with resources` to automatically release the resources when done
+        try
+                (
+                        Connection conn = Database.connectDatabase();
+                        PreparedStatement st = conn.prepareStatement("SELECT COUNT( DISTINCT(purchase_code) ) AS total_today_purchases FROM purchases WHERE created_at >= ? and created_at <= ?")
+                ) {
+
+            st.setDate(1, Date.valueOf(startDate.toLocalDate()));
+            st.setDate(2, Date.valueOf(endDate.toLocalDate()));
+//            execute the query
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) return rs.getInt("total_today_purchases");
+        } catch (Exception e) {
+//            TODO: handle errors properly
+            System.out.println("Could not retrieve purchases");
+            e.printStackTrace();
+            throw e;
+        }
+        return 0;
+    }
 
     //    get all purchases
     public static List<PurchaseViewEntity> getAllPurchases() throws SQLException {

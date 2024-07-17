@@ -6,9 +6,14 @@ import com.lambda.pharmacymangementsystem.utils.TableActionButtons;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -78,6 +83,23 @@ public class SupplierController {
     @FXML
     private void showAddSupplier() {
         System.out.println("Load supplier view");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/add-supplier-view.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Add Supplier");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+
+            // wait for user input
+            stage.showAndWait();
+
+            //reload data
+            loadSuppliers();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleEdit(SupplierEntity supplier) {

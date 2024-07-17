@@ -1,13 +1,11 @@
 package com.lambda.pharmacymangementsystem.model.functions;
 
-import com.lambda.pharmacymangementsystem.model.Database;
 import com.lambda.pharmacymangementsystem.model.entities.DashboardEntity;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.*;
 
 public class DashboardFunctions {
 
@@ -15,44 +13,42 @@ public class DashboardFunctions {
      * @return - DashoardEntity : a summary of all dashboard statistics in the pharmacy
      * @throws SQLException
      */
-    public static DashboardEntity getDashboardSummary() throws SQLException {
-//        DashboardEntity dashboardSummary = new DashboardEntity();
-//        use `try with resources` to automatically release the resources when done
+    public static DashboardEntity getDashboardSummary() throws SQLException, ExecutionException, InterruptedException {
+
+        // create callable interfaces
+        List<Callable<Integer>> tasks = new ArrayList<>();
+        tasks.add(() -> DrugFunctions.getAllDrugsCount());
+        tasks.add(() -> SupplierFunctions.getAllSuppliersCount());
+        tasks.add(() -> PurchaseFunctions.getAllPurchasesCount());
+        tasks.add(() -> DrugFunctions.getAllLowInStockDrugsCount());
+        tasks.add(() -> PurchaseFunctions.getAllTodayPurchasesCount());
+
+
+        //        use `try with resources` to automatically release the resources when done
         try
                 (
-                        Connection conn = Database.connectDatabase();
-                        Statement st = conn.createStatement()
+                        ExecutorService executor = Executors.newFixedThreadPool(2);
                 ) {
 
-//            add a batch query
-            st.addBatch("SELECT COUNT(*) AS total_drugs FROM drugs");
-            st.addBatch("SELECT COUNT(*) AS total_suppliers FROM suppliers");
-            st.addBatch("SELECT COUNT(*) AS total_purchases FROM purchases");
-            st.addBatch("SELECT COUNT(*) AS total_low_in_stock_drugs FROM drugs WHERE quantity = 0");
-            st.addBatch("SELECT COUNT(*) AS total_drugs FROM drugs");
+            // submit all tasks to executor
+            List<Future<Integer>> results = executor.invokeAll(tasks);
 
-            // execute the batch query
-            int[] output = st.executeBatch();
-            List<Integer> stats = new ArrayList<>();
+            List<Integer> data = new ArrayList<>();
 
-            //unpack into a list for efficient processing
-            for (int val : output) {
-                System.out.println(val);
-                if (val < 0) return null;
-                stats.add(val);
+            // process the results
+            for (Future<Integer> result : results) {
+                data.add(result.get());
             }
 
-            //process results
-
             return new DashboardEntity(
-                    stats.get(0),
-                    stats.get(1),
-                    stats.get(2),
-                    stats.get(3),
-                    stats.get(4)
+                    data.get(0),
+                    data.get(1),
+                    data.get(2),
+                    data.get(3),
+                    data.get(4)
             );
+
         } catch (Exception e) {
-//            TODO: handle errors properly
             System.out.println("Could not retrieve dashboard statistics");
             e.printStackTrace();
             throw e;
