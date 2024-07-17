@@ -5,6 +5,11 @@ import com.lambda.pharmacymangementsystem.model.entities.DrugEntity;
 import com.lambda.pharmacymangementsystem.model.entities.DrugViewEntity;
 import com.lambda.pharmacymangementsystem.utils.Drug;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -333,4 +338,48 @@ public class DrugFunctions {
         }
     }
 
+        public static double getDrugPriceByName(String drugName) throws SQLException {
+            double price = 0.0;
+            String sql = "SELECT price FROM drugs WHERE name = ?";
+
+            try (Connection conn = Database.connectDatabase(); // Assume Database.connectDatabase() is a method that establishes a database connection
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                pstmt.setString(1, drugName);
+                ResultSet rs = pstmt.executeQuery();
+
+                if (rs.next()) {
+                    price = rs.getDouble("price");
+                } else {
+                    throw new SQLException("Drug not found");
+                }
+            } catch (SQLException e) {
+                System.out.println("SQL Error: " + e.getMessage());
+                throw e;
+            }
+
+            return price;
+        }
+
+        public static int getDrugIdByName(String drugName) throws SQLException {
+            int id = -1; // Default or error value
+            String sql = "SELECT id FROM drugs WHERE name = ?";
+
+            try (Connection conn = Database.connectDatabase(); // Assume Database.connectDatabase() is a method that establishes a database connection
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                pstmt.setString(1, drugName);
+                ResultSet rs = pstmt.executeQuery();
+
+                if (rs.next()) {
+                    id = rs.getInt("id");
+                } else {
+                    throw new SQLException("Drug not found");
+                }
+            } catch (SQLException e) {
+                System.out.println("SQL Error: " + e.getMessage());
+                throw e;
+            }
+            return id;
+    }
 }

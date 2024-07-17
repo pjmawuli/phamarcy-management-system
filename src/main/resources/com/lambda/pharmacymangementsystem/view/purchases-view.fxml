@@ -8,7 +8,7 @@
     <HBox styleClass="page-header">
         <Label text="Purchases" styleClass="page-title"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Button text="Add New Purchase" styleClass="add-button"/>
+        <Button fx:id="addNewPuchaseButton" text="Add New Purchase" styleClass="add-button" onAction="#showAddPurchaseView"/>
     </HBox>
 
     <TableView fx:id="datatable" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" styleClass="purchase-table">

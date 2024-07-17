@@ -5,9 +5,13 @@ import com.lambda.pharmacymangementsystem.model.functions.PurchaseFunctions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -77,5 +81,25 @@ public class PurchaseController {
             //  TODO: show error label with appropriate description
             System.out.println("Error loading purchases: " + e.getMessage());
         }
+    }
+
+    @FXML
+    public void showAddPurchaseView() {
+        try{
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/fxml/add-purchases-view.fxml"));
+            Parent root = fxmlloader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+
+            purchases.clear();
+            loadPurchases();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        // This method should be implemented in the MainController
     }
 }

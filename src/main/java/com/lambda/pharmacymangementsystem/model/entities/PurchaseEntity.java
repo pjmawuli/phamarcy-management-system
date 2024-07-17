@@ -11,14 +11,18 @@ public class PurchaseEntity {
     private int drug_id;
     private LocalDateTime created_at;
 
-    //    default constructor with id
+    // No-argument constructor
+    public PurchaseEntity() {
+    }
+
+    // Default constructor with id
     public PurchaseEntity(int id, String purchase_code, int quantity, double total_price, String customer_name, int drug_id, LocalDateTime created_at) {
         this(purchase_code, quantity, total_price, customer_name, drug_id);
         this.id = id;
         this.created_at = created_at;
     }
 
-    //    define constructor
+    // Define constructor
     public PurchaseEntity(String purchase_code, int quantity, double total_price, String customer_name, int drug_id) {
         this.purchase_code = purchase_code;
         this.quantity = quantity;
@@ -27,11 +31,11 @@ public class PurchaseEntity {
         this.drug_id = drug_id;
     }
 
+    // Getters and setters
     public int getId() {
         return id;
     }
 
-    //    define getters and setters
     public void setId(int id) {
         this.id = id;
     }
@@ -83,5 +87,4 @@ public class PurchaseEntity {
     public void setCreatedAt(LocalDateTime created_at) {
         this.created_at = created_at;
     }
-
 }
