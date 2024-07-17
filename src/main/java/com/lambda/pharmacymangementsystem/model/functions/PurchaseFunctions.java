@@ -3,6 +3,7 @@ package com.lambda.pharmacymangementsystem.model.functions;
 import com.lambda.pharmacymangementsystem.model.Database;
 import com.lambda.pharmacymangementsystem.model.entities.PurchaseEntity;
 import com.lambda.pharmacymangementsystem.model.entities.PurchaseViewEntity;
+import com.lambda.pharmacymangementsystem.utils.Purchase;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -23,6 +24,11 @@ public class PurchaseFunctions {
         try {
 //          disable the default autocommit behavior of the pgdbc driver for transactions
             conn.setAutoCommit(false);
+
+            //Retireve the most rececnt purchase code and add generate the next purchase code
+
+            String lastPurchaseCode = getRecentPurchaseCode();
+            purchase.setPurchaseCode(Purchase.generateNextPurchaseCode(lastPurchaseCode));
 
             PreparedStatement st = conn.prepareStatement("INSERT INTO purchases (purchase_code, quantity, total_price, customer_name, drug_id) VALUES (?, ?, ?, ?, ?)");
 

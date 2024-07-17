@@ -109,7 +109,7 @@ public class DrugController {
 
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle exception (e.g., show an error dialog)
+            //
         }
         System.out.println(drugs.get(0).getDrugCode());
     }
