@@ -42,7 +42,7 @@
             <Insets left="40.0" right="40.0" />
          </padding>
       </VBox>
-      <Button maxWidth="200" onAction="#handleSave" prefHeight="40" style="-fx-background-color: #45a049; -fx-text-fill: white;" text="Submit">
+      <Button fx:id="addButton" maxWidth="200" onAction="#handleSave" prefHeight="40" style="-fx-background-color: #45a049; -fx-text-fill: white;" text="Submit">
          <font>
             <Font size="14.0" />
          </font>

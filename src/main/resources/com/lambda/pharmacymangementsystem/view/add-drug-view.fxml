@@ -1,31 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="408.0" prefWidth="281.0" xmlns="http://javafx.com/javafx/22"
-            fx:controller="com.lambda.pharmacymangementsystem.controller.AddDrugController" stylesheets="@styles.css">
-    <children>
-        <Text layoutX="84.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Drug Details">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Text>
-        <Text layoutX="70.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name"/>
-        <TextField fx:id="nameField" styleClass=".custom-text-field" layoutX="67.0" layoutY="90.0"/>
-        <Text layoutX="70.0" layoutY="158.0" styleClass=".custom-text-field" strokeType="OUTSIDE" strokeWidth="0.0"
-              text="Quantity"/>
-        <TextField fx:id="quantityField" styleClass=".custom-text-field" layoutX="67.0" layoutY="162.0"/>
-        <Text layoutX="74.0" layoutY="292.0" styleClass=".custom-text-field" strokeType="OUTSIDE" strokeWidth="0.0"
-              text="Supplier ID"/>
-        <ComboBox fx:id="supplierComboBox" layoutX="69.0" layoutY="307.0" prefWidth="150.0"/>
-        <Button fx:id="addButton" layoutX="90.0" layoutY="357.0" mnemonicParsing="false" prefHeight="30.0"
-                prefWidth="108.0" text="SUBMIT"/>
-        <Text layoutX="72.0" layoutY="233.0" styleClass=".custom-text-field" strokeType="OUTSIDE" strokeWidth="0.0"
-              text="Price"
-              wrappingWidth="35.5078125"/>
-        <TextField fx:id="priceField" styleClass=".custom-text-field" layoutX="68.0" layoutY="237.0"/>
-    </children>
-</AnchorPane>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="434.0" prefWidth="385.0" spacing="20" style="-fx-font-size: 14pt;" stylesheets="@css/add-purchase-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lambda.pharmacymangementsystem.controller.AddDrugController">
+   <padding>
+      <Insets bottom="30" left="30" right="30" top="30" />
+   </padding>
+   <children>
+      <Label alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="34.0" prefWidth="243.0" style="-fx-font-size: 28px; -fx-font-weight: bold;" text="Add new drug">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <VBox prefHeight="203.0" prefWidth="325.0" spacing="10.0">
+         <children>
+            <Label text="Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nameField" layoutX="50.0" layoutY="66.0" styleClass="custom-text-field" />
+            <Label text="Quantity">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="quantityField" styleClass="custom-text-field" />
+            <Label text="Price">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="priceField" styleClass="custom-text-field" />
+            <Label text="Supplier ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox  fx:id="supplierComboBox" prefHeight="35.0" prefWidth="243.0" styleClass="custom-combo-box" />
+         </children>
+         <padding>
+            <Insets left="40.0" right="40.0" />
+         </padding>
+      </VBox>
+      <Button fx:id="addButton" maxWidth="200" onAction="#addDrug" prefHeight="40" style="-fx-background-color: #45a049; -fx-text-fill: white;" text="Submit">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>
