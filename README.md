@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a Pharmacy Management System developed for the DCIT308: Data Structures and Algorithms 2 class at the University of Ghana. The system allows pharmacists to manage drugs, view purchase history, and manage suppliers using Java, JavaFX for the user interface, and MySQL for the backend database.
+This project is a Pharmacy Management System developed for the DCIT308: Data Structures and Algorithms 2 class at the University of Ghana. The system allows pharmacists to manage drugs, view purchase history, and manage suppliers using Java, JavaFX for the user interface, and POSTGRES for the backend database.
 
 ## Features
 
@@ -15,4 +15,4 @@ This project is a Pharmacy Management System developed for the DCIT308: Data Str
 
 - **Java**
 - **JavaFX**
-- **MySQL**
+- **POSTGRES**

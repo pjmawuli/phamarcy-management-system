@@ -5,7 +5,7 @@
 }
 
 .custom-text-field:focused {
-    -fx-border-color: transparent transparent #FF0000 transparent;
+    -fx-border-color: transparent transparent #2c3e50 transparent;
 }
 
 .custom-combo-box {
@@ -15,7 +15,7 @@
 }
 
 .custom-combo-box:focused {
-    -fx-border-color: transparent transparent #FF0000 transparent;
+    -fx-border-color: transparent transparent #2c3e50 transparent;
 }
 
 .custom-combo-box > .arrow-button {

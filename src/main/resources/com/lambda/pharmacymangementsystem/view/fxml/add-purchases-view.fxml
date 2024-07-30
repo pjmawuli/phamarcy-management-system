@@ -53,7 +53,7 @@
       </padding>
    </VBox>
 
-    <Button maxWidth="200" onAction="#addPurchase" prefHeight="40" style="-fx-background-color: #FF0000; -fx-text-fill: white;" text="Add Purchase">
+    <Button maxWidth="200" onAction="#addPurchase" prefHeight="40" style="-fx-background-color: #45a049; -fx-text-fill: white;" text="Add Purchase">
       <font>
          <Font size="14.0" />
       </font></Button>
