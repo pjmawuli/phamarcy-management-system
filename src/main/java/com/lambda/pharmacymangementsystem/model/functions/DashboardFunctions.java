@@ -10,7 +10,8 @@ import java.util.concurrent.*;
 public class DashboardFunctions {
 
     /**
-     * @return - DashoardEntity : a summary of all dashboard statistics in the pharmacy
+     * @return - DashoardEntity : a summary of all dashboard statistics in the
+     *         pharmacy
      * @throws SQLException
      */
     public static DashboardEntity getDashboardSummary() throws SQLException, ExecutionException, InterruptedException {
@@ -23,12 +24,9 @@ public class DashboardFunctions {
         tasks.add(() -> DrugFunctions.getAllLowInStockDrugsCount());
         tasks.add(() -> PurchaseFunctions.getAllTodayPurchasesCount());
 
-
-        //        use `try with resources` to automatically release the resources when done
-        try
-                (
-                        ExecutorService executor = Executors.newFixedThreadPool(2);
-                ) {
+        // use `try with resources` to automatically release the resources when done
+        try (
+                ExecutorService executor = Executors.newFixedThreadPool(2);) {
 
             // submit all tasks to executor
             List<Future<Integer>> results = executor.invokeAll(tasks);
@@ -45,8 +43,7 @@ public class DashboardFunctions {
                     data.get(1),
                     data.get(2),
                     data.get(3),
-                    data.get(4)
-            );
+                    data.get(4));
 
         } catch (Exception e) {
             System.out.println("Could not retrieve dashboard statistics");

@@ -34,14 +34,14 @@ public class AddSupplierController {
         addButton.setOnAction(actionEvent -> handleSave(actionEvent));
     }
 
-
     public void handleSave(ActionEvent actionEvent) {
         if (!validateInput()) {
             showAlert("Validation Error", "Please fill in all fields correctly.", Alert.AlertType.ERROR);
             return;
         }
         try {
-            SupplierEntity supplier = new SupplierEntity(nameField.getText(), Integer.parseInt(contactField.getText()), locationField.getText());
+            SupplierEntity supplier = new SupplierEntity(nameField.getText(), contactField.getText(),
+                    locationField.getText());
             SupplierFunctions.addOneSupplier(supplier);
             showAlert("Success", "Supplier added successfully.", Alert.AlertType.INFORMATION);
             closeDialog();
@@ -52,7 +52,8 @@ public class AddSupplierController {
     }
 
     private boolean validateInput() {
-        return !nameField.getText().isEmpty() && !contactField.getText().isEmpty() && !locationField.getText().isEmpty();
+        return !nameField.getText().isEmpty() && !contactField.getText().isEmpty()
+                && !locationField.getText().isEmpty();
     }
 
     private void closeDialog() {
@@ -67,4 +68,3 @@ public class AddSupplierController {
         alert.showAndWait();
     }
 }
-

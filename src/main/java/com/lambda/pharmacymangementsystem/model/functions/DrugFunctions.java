@@ -20,48 +20,45 @@ public class DrugFunctions {
     // add one drug
     public static void addOneDrug(DrugEntity drug) throws SQLException {
 
-//        `use try with resources` to automatically release the resources when done
-        try
-                (
-                        Connection conn = Database.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("INSERT INTO drugs (name, drug_code, quantity, price, supplier_id) VALUES (?, ?, ?, ?, ?)")
-                ) {
+        // `use try with resources` to automatically release the resources when done
+        try (
+                Connection conn = Database.connectDatabase();
+                PreparedStatement st = conn.prepareStatement(
+                        "INSERT INTO drugs (name, drug_code, quantity, price, supplier_id) VALUES (?, ?, ?, ?, ?)")) {
             // get the drug code
             String recentDrugCode = getRecentDrugCode();
 
             // generate next drug code
             String nextDrugCode = Drug.generateNextDrugCode(recentDrugCode);
 
-//            bind inputs
+            // bind inputs
             st.setString(1, drug.getName());
             st.setString(2, nextDrugCode);
             st.setInt(3, drug.getQuantity());
             st.setDouble(4, drug.getPrice());
             st.setInt(5, drug.getSupplierId());
 
-//            execute the query
+            // execute the query
             st.executeUpdate();
         } catch (SQLException e) {
-//            TODO: handle errors properly
+            // TODO: handle errors properly
             System.out.println("Could not add drug");
             e.printStackTrace();
             throw e;
         }
     }
 
-    //    get one drug
+    // get one drug
     public static DrugViewEntity getOneDrug(int id) throws SQLException {
-//        use `try with resources` to automatically release the resources when done
-        try
-                (
-                        Connection conn = Database.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("SELECT * FROM drugs_view WHERE id = ?")
-                ) {
+        // use `try with resources` to automatically release the resources when done
+        try (
+                Connection conn = Database.connectDatabase();
+                PreparedStatement st = conn.prepareStatement("SELECT * FROM drugs_view WHERE id = ?")) {
 
-//            bind inputs
+            // bind inputs
             st.setInt(1, id);
 
-//            execute the query
+            // execute the query
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return new DrugViewEntity(
@@ -80,7 +77,7 @@ public class DrugFunctions {
                         rs.getObject("supplier_updated_at", LocalDateTime.class));
             }
         } catch (SQLException e) {
-//            TODO: handle errors properly
+            // TODO: handle errors properly
             System.out.println("Could not retrieve drug");
             e.printStackTrace();
             throw e;
@@ -90,18 +87,17 @@ public class DrugFunctions {
 
     // get all drugs count
     public static int getAllDrugsCount() throws SQLException {
-//        use `try with resources` to automatically release the resources when done
-        try
-                (
-                        Connection conn = Database.connectDatabase();
-                        Statement st = conn.createStatement()
-                ) {
+        // use `try with resources` to automatically release the resources when done
+        try (
+                Connection conn = Database.connectDatabase();
+                Statement st = conn.createStatement()) {
 
-//            execute the query
+            // execute the query
             ResultSet rs = st.executeQuery("SELECT COUNT(*) AS total_drugs FROM drugs");
-            if (rs.next()) return rs.getInt("total_drugs");
+            if (rs.next())
+                return rs.getInt("total_drugs");
         } catch (SQLException e) {
-//            TODO: handle errors properly
+            // TODO: handle errors properly
             System.out.println("Could not retrieve drugs");
             e.printStackTrace();
             throw e;
@@ -111,18 +107,17 @@ public class DrugFunctions {
 
     // get all low in stock drugs count
     public static int getAllLowInStockDrugsCount() throws SQLException {
-//        use `try with resources` to automatically release the resources when done
-        try
-                (
-                        Connection conn = Database.connectDatabase();
-                        Statement st = conn.createStatement()
-                ) {
+        // use `try with resources` to automatically release the resources when done
+        try (
+                Connection conn = Database.connectDatabase();
+                Statement st = conn.createStatement()) {
 
-//            execute the query
+            // execute the query
             ResultSet rs = st.executeQuery("SELECT COUNT(*) AS total_low_in_stock_drugs FROM drugs WHERE quantity = 0");
-            if (rs.next()) return rs.getInt("total_low_in_stock_drugs");
+            if (rs.next())
+                return rs.getInt("total_low_in_stock_drugs");
         } catch (SQLException e) {
-//            TODO: handle errors properly
+            // TODO: handle errors properly
             System.out.println("Could not retrieve drugs with low stock");
             e.printStackTrace();
             throw e;
@@ -130,17 +125,15 @@ public class DrugFunctions {
         return 0;
     }
 
-    //    get all drugs
+    // get all drugs
     public static List<DrugViewEntity> getAllDrugs() throws SQLException {
         List<DrugViewEntity> drugs = new ArrayList<DrugViewEntity>();
-//        use `try with resources` to automatically release the resources when done
-        try
-                (
-                        Connection conn = Database.connectDatabase();
-                        Statement st = conn.createStatement()
-                ) {
+        // use `try with resources` to automatically release the resources when done
+        try (
+                Connection conn = Database.connectDatabase();
+                Statement st = conn.createStatement()) {
 
-//            execute the query
+            // execute the query
             ResultSet rs = st.executeQuery("SELECT * FROM drugs_view ORDER BY drug_code");
             while (rs.next()) {
                 DrugViewEntity newDrug = new DrugViewEntity(
@@ -161,85 +154,80 @@ public class DrugFunctions {
             }
             return drugs;
         } catch (SQLException e) {
-//            TODO: handle errors properly
+            // TODO: handle errors properly
             System.out.println("Could not retrieve drugs");
             e.printStackTrace();
             throw e;
         }
     }
 
-
-    //    update one drug
+    // update one drug
     public static void updateOneDrug(int id, DrugEntity drug) throws SQLException {
 
-//        use `try with resources` to automatically release the resources when done
-        try
-                (
-                        Connection conn = Database.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("UPDATE drugs SET name = ?, quantity = ?, price = ?, supplier_id = ? WHERE id = ?")
-                ) {
+        // use `try with resources` to automatically release the resources when done
+        try (
+                Connection conn = Database.connectDatabase();
+                PreparedStatement st = conn.prepareStatement(
+                        "UPDATE drugs SET name = ?, quantity = ?, price = ?, supplier_id = ? WHERE id = ?")) {
 
-//            bind inputs
+            // bind inputs
             st.setString(1, drug.getName());
             st.setInt(2, drug.getQuantity());
             st.setDouble(3, drug.getPrice());
             st.setInt(4, drug.getSupplierId());
             st.setInt(5, id);
 
-//            execute the query
+            // execute the query
             int rs = st.executeUpdate();
-            if (rs < 1) throw new SQLException("Drug not found");
+            if (rs < 1)
+                throw new SQLException("Drug not found");
         } catch (SQLException e) {
-//            TODO: handle errors properly
+            // TODO: handle errors properly
             System.out.println("Could not update drug");
             e.printStackTrace();
             throw e;
         }
     }
 
-
-    //    delete one drug
+    // delete one drug
     public static void deleteOneDrug(int id) throws SQLException {
-//        PreparedStatement st = null;
+        // PreparedStatement st = null;
 
-//        use `try with resources` to automatically release the resources when done
-        try
-                (
-                        Connection conn = Database.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("DELETE FROM drugs WHERE id = ?")
-                ) {
+        // use `try with resources` to automatically release the resources when done
+        try (
+                Connection conn = Database.connectDatabase();
+                PreparedStatement st = conn.prepareStatement("DELETE FROM drugs WHERE id = ?")) {
 
-//            bind inputs
+            // bind inputs
             st.setInt(1, id);
 
-//            execute the query
+            // execute the query
             int rs = st.executeUpdate();
-            if (rs < 1) throw new SQLException("Drug not found");
+            if (rs < 1)
+                throw new SQLException("Drug not found");
         } catch (SQLException e) {
-//            TODO: handle errors properly
+            // TODO: handle errors properly
             System.out.println("Could not delete drug");
             e.printStackTrace();
             throw e;
         }
     }
 
-
-    //    get recent drug code
+    // get recent drug code
     public static String getRecentDrugCode() throws SQLException {
-//        use `try with resources` to automatically release the resources when done
-        try
-                (
-                        Connection conn = Database.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement("SELECT drug_code FROM drugs ORDER BY drug_code DESC LIMIT 1")
-                ) {
+        // use `try with resources` to automatically release the resources when done
+        try (
+                Connection conn = Database.connectDatabase();
+                PreparedStatement st = conn
+                        .prepareStatement("SELECT drug_code FROM drugs ORDER BY drug_code DESC LIMIT 1")) {
 
-//            execute the query
+            // execute the query
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return rs.getString("drug_code");
             }
         } catch (SQLException e) {
-//            TODO: handle errors properly
+            // TODO: handle errors properly
             System.out.println("Could not retrieve recent drug code");
             e.printStackTrace();
             throw e;
@@ -247,23 +235,25 @@ public class DrugFunctions {
         return "MED-00000";
     }
 
-//    search for drug with parameters
+    // search for drug with parameters
 
     /**
-     * This method accepts a hashmap containing all valid parameters (column names) to perform a partial case-insensitive search and retrieve matching records
+     * This method accepts a hashmap containing all valid parameters (column names)
+     * to perform a partial case-insensitive search and retrieve matching records
      *
-     * @param params - a hashmap containing the parameters (column) names and their respective values
+     * @param params - a hashmap containing the parameters (column) names and their
+     *               respective values
      * @return List<DrugEntity>
      * @throws SQLException
      */
     public static List<DrugViewEntity> searchDrugs(Map<String, Object> params) throws SQLException {
-//        create a string builder for the query
+        // create a string builder for the query
         StringBuilder query = new StringBuilder("SELECT * FROM drugs_view WHERE 1=1");
 
-//        store the validated column values in a queue
+        // store the validated column values in a queue
         List<Object> values = new ArrayList<>();
 
-//        iterate over the params map and append the available params
+        // iterate over the params map and append the available params
         if (params.containsKey("name")) {
             query.append(" AND name ILIKE ?");
             values.add("%" + params.get("name") + "%");
@@ -278,24 +268,21 @@ public class DrugFunctions {
             values.add("%" + params.get("supplier_name") + "%");
         }
 
-//        append order by clause
+        // append order by clause
         query.append(" ORDER BY drug_code");
 
         List<DrugViewEntity> drugs = new ArrayList<>();
-//        use `try with resources` to automatically release the resources when done
-        try
-                (
-                        Connection conn = Database.connectDatabase();
-                        PreparedStatement st = conn.prepareStatement(query.toString())
-                ) {
+        // use `try with resources` to automatically release the resources when done
+        try (
+                Connection conn = Database.connectDatabase();
+                PreparedStatement st = conn.prepareStatement(query.toString())) {
 
-            //        bind inputs
+            // bind inputs
             for (int i = 0; i < values.size(); i++) {
                 st.setObject(i + 1, values.get(i));
             }
 
-
-//            execute the query by chaining the parameters in the hashmap
+            // execute the query by chaining the parameters in the hashmap
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 DrugViewEntity newDrug = new DrugViewEntity(
@@ -316,27 +303,27 @@ public class DrugFunctions {
             }
             return drugs;
         } catch (SQLException e) {
-//            TODO: handle errors properly
+            // TODO: handle errors properly
             System.out.println("Could not retrieve drugs");
             e.printStackTrace();
             throw e;
         }
     }
 
-    //    update drug stock
+    // update drug stock
     public static void updateOneDrugStock(int id, int quantity) throws SQLException, Exception {
 
         Connection conn = Database.connectDatabase();
         try {
-//          disable the default autocommit behavior of the pgdbc driver for transactions
+            // disable the default autocommit behavior of the pgdbc driver for transactions
             conn.setAutoCommit(false);
 
-//          fetch drug with drug_code and quantity
+            // fetch drug with drug_code and quantity
             PreparedStatement drugSt = conn.prepareStatement("SELECT drug_code, quantity FROM drugs WHERE id = ?");
 
             drugSt.setInt(1, id);
 
-//            execute the query
+            // execute the query
             ResultSet drugRs = drugSt.executeQuery();
 
             if (!drugRs.next()) {
@@ -346,26 +333,26 @@ public class DrugFunctions {
             int quantityInStock = drugRs.getInt("quantity");
             String drugCode = drugRs.getString("drug_code");
 
-//          throw Quantity out of stock error
+            // throw Quantity out of stock error
             if (quantityInStock < quantity) {
                 throw new Exception("Drug: " + drugCode + " has insufficient quantity in stock");
             }
 
             PreparedStatement st = conn.prepareStatement("UPDATE drugs SET quantity = ? WHERE id = ?");
 
-//            bind inputs
+            // bind inputs
             st.setInt(1, quantityInStock - quantity);
             st.setInt(2, id);
 
-//            execute the query
+            // execute the query
             st.executeUpdate();
 
-//            commit transaction
+            // commit transaction
             conn.commit();
         } catch (Exception e) {
-//            rollback transaction in case of error
+            // rollback transaction in case of error
             conn.rollback();
-//            TODO: handle errors properly
+            // TODO: handle errors properly
             System.out.println("Could not update drug stock");
             e.printStackTrace();
             throw e;
@@ -378,8 +365,9 @@ public class DrugFunctions {
         double price = 0.0;
         String sql = "SELECT price FROM drugs WHERE name = ?";
 
-        try (Connection conn = Database.connectDatabase(); // Assume Database.connectDatabase() is a method that establishes a database connection
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Database.connectDatabase(); // Assume Database.connectDatabase() is a method that
+                                                           // establishes a database connection
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, drugName);
             ResultSet rs = pstmt.executeQuery();
@@ -401,8 +389,9 @@ public class DrugFunctions {
         int id = -1; // Default or error value
         String sql = "SELECT id FROM drugs WHERE name = ?";
 
-        try (Connection conn = Database.connectDatabase(); // Assume Database.connectDatabase() is a method that establishes a database connection
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Database.connectDatabase(); // Assume Database.connectDatabase() is a method that
+                                                           // establishes a database connection
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, drugName);
             ResultSet rs = pstmt.executeQuery();

@@ -209,3 +209,54 @@
 .custom-combo-box > .arrow-button {
     -fx-background-color: transparent;
 }
+
+.export-section {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 15px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.export-header {
+    -fx-padding: 0 0 10px 0;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.export-icon {
+    -fx-fill: #4a90e2;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
+.export-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 10px;
+}
+
+.export-button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.export-button:hover {
+    -fx-background-color: #3a80d2;
+}
+
+.export-progress {
+    -fx-pref-height: 10px;
+}
+
+.export-progress > .bar {
+    -fx-background-color: #4a90e2;
+}
+
+.export-progress > .track {
+    -fx-background-color: #e0e0e0;
+}

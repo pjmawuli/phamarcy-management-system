@@ -56,10 +56,9 @@ public class SupplierFunctionsTest {
         }
     }
 
-
     private static void testAddOneSupplier() {
         try {
-            SupplierEntity supplier = new SupplierEntity("Test Supplier", 123456789, "Test Location");
+            SupplierEntity supplier = new SupplierEntity("Test Supplier", "0200000000", "Test Location");
             SupplierFunctions.addOneSupplier(supplier);
             System.out.println("Supplier added successfully.");
         } catch (SQLException e) {
@@ -82,7 +81,7 @@ public class SupplierFunctionsTest {
 
     private static void testUpdateOneSupplier(int id) {
         try {
-            SupplierEntity supplier = new SupplierEntity("Updated Supplier", 987654321, "Updated Location");
+            SupplierEntity supplier = new SupplierEntity("Updated Supplier", "02000000098", "Updated Location");
             SupplierFunctions.updateOneSupplier(id, supplier);
             System.out.println("Supplier updated successfully.");
         } catch (SQLException e) {

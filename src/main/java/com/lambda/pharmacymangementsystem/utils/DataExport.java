@@ -9,12 +9,10 @@ import java.io.FileOutputStream;
 import java.sql.Connection;
 
 public class DataExport {
-    static Database db = new Database();
 
     public static void exportToCSV(String path, String source) {
         try (
-                Connection conn = db.connectDatabase();
-        ) {
+                Connection conn = Database.connectDatabase();) {
             CopyManager copyManager = new CopyManager((BaseConnection) conn);
             // create file at specified path
             File file = new File(path);

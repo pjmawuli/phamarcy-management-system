@@ -69,7 +69,25 @@
                         styleClass="card-icon-danger"/>
                 <Label text="Low in Stock" styleClass="card-title"/>
             </HBox>
-            <Label fx:id="lowInStockLabel" text="0" styleClass="card-value" />
+            <Label fx:id="lowInStockLabel" text="0" styleClass="card-value"/>
+        </VBox>
+
+        <!-- Export Section -->
+        <VBox spacing="15" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="3"
+              styleClass="export-section">
+            <HBox alignment="CENTER_LEFT" styleClass="export-header">
+                <SVGPath
+                        content="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        styleClass="export-icon"/>
+                <Label text="Export Data" styleClass="export-title"/>
+            </HBox>
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Suppliers" onAction="#exportSuppliers" styleClass="export-button"/>
+                <Button text="Drugs" onAction="#exportDrugs" styleClass="export-button"/>
+                <Button text="Purchases" onAction="#exportPurchases" styleClass="export-button"/>
+            </HBox>
+            <ProgressBar fx:id="exportProgressBar" progress="0.0" visible="false" maxWidth="Infinity"
+                         styleClass="export-progress"/>
         </VBox>
     </GridPane>
 </VBox>

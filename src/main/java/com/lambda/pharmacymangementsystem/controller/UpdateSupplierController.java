@@ -33,15 +33,14 @@ public class UpdateSupplierController {
 
         // set the field values
         nameField.setText(supplier.getName());
-        contactField.setText(Integer.toString(supplier.getContact()));
+        contactField.setText(supplier.getContact());
         locationField.setText(supplier.getLocation());
     }
-
 
     public void handleUpdateAction(ActionEvent actionEvent) {
         // set updated values
         supplier.setName(nameField.getText());
-        supplier.setContact(Integer.parseInt(contactField.getText()));
+        supplier.setContact(contactField.getText());
         supplier.setLocation(locationField.getText());
 
         if (!validateInput()) {
@@ -59,7 +58,8 @@ public class UpdateSupplierController {
     }
 
     private boolean validateInput() {
-        return !nameField.getText().isEmpty() && !contactField.getText().isEmpty() && !locationField.getText().isEmpty();
+        return !nameField.getText().isEmpty() && !contactField.getText().isEmpty()
+                && !locationField.getText().isEmpty();
     }
 
     private void showAlert(String title, String content, Alert.AlertType type) {

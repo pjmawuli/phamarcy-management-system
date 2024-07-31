@@ -6,31 +6,26 @@ import com.lambda.pharmacymangementsystem.model.functions.DrugFunctions;
 import com.lambda.pharmacymangementsystem.model.functions.SupplierFunctions;
 import com.lambda.pharmacymangementsystem.utils.Drug;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class AddDrugController {
 
+    private final HashMap<String, Integer> supplierMap = new HashMap<>();
     @FXML
     public TextField nameField;
-
     @FXML
     public TextField quantityField;
-
     @FXML
     public ComboBox<String> supplierComboBox;
-
     @FXML
     public TextField priceField;
-
     @FXML
     public Button addButton;
-
-    private final HashMap<String, Integer> supplierMap = new HashMap<>();
 
     @FXML
     public void initialize() {
@@ -58,7 +53,7 @@ public class AddDrugController {
             int supplierId = supplierMap.get(supplierComboBox.getValue());
             String lastDrugCode = DrugFunctions.getRecentDrugCode();
             String drugCode = Drug.generateNextDrugCode(lastDrugCode);
-            double price = 0; // This should be replaced with actual price retrieval logic
+            double price = Double.parseDouble(priceField.getText());
 
             DrugEntity newDrug = new DrugEntity(name, drugCode, quantity, price, supplierId);
             DrugFunctions.addOneDrug(newDrug);

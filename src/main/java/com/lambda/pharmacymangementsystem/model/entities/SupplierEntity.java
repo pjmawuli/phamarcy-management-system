@@ -6,13 +6,13 @@ import java.time.LocalDateTime;
 public class SupplierEntity {
     private int id;
     private String name;
-    private int contact;
+    private String contact;
     private String location;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
 
     //    default constructor with id
-    public SupplierEntity(int id, String name, int contact, String location, LocalDateTime created_at, LocalDateTime updated_at) {
+    public SupplierEntity(int id, String name, String contact, String location, LocalDateTime created_at, LocalDateTime updated_at) {
         this(name, contact, location);
         this.id = id;
         this.created_at = created_at;
@@ -20,7 +20,7 @@ public class SupplierEntity {
     }
 
     //    define constructor
-    public SupplierEntity(String name, int contact, String location) {
+    public SupplierEntity(String name, String contact, String location) {
         this.name = name;
         this.contact = contact;
         this.location = location;
@@ -43,11 +43,11 @@ public class SupplierEntity {
         this.name = name;
     }
 
-    public int getContact() {
+    public String getContact() {
         return contact;
     }
 
-    public void setContact(int contact) {
+    public void setContact(String contact) {
         this.contact = contact;
     }
 
