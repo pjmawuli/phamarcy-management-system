@@ -14,6 +14,8 @@
         <Button text="Add New Drug" styleClass="add-button" onAction="#handleAdd"/>
     </HBox>
 
+    <TextField fx:id="searchField" promptText="Search by drug name" styleClass="custom-search-field"/>
+
     <TableView fx:id="datatable" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" styleClass="drug-table">
         <columns>
             <TableColumn fx:id="nameColumn" text="Name" styleClass="table-column"/>

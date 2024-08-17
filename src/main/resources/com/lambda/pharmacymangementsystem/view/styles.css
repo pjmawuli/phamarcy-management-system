@@ -260,3 +260,32 @@
 .export-progress > .track {
     -fx-background-color: #e0e0e0;
 }
+
+/* Custom style for the search field with fixed width */
+.custom-search-field {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: #cccccc; /* Light grey border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-padding: 5px 10px; /* Padding inside the field */
+    -fx-prompt-text-fill: #a0a0a0; /* Light grey placeholder text */
+    -fx-min-width: 200px; /* Minimum width */
+    -fx-pref-width: 300px; /* Preferred width */
+    -fx-max-width: 300px; /* Maximum width */
+}
+
+.custom-search-field:focused {
+    -fx-border-color: #4CAF50; /* Green border when focused */
+    -fx-border-width: 1px;
+}
+
+/* TableView row hover effect */
+.drug-table .table-row:hover {
+    -fx-background-color: #49a0ab; /* Light blue background on hover */
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+}
+
+/* Optional: You can style the selected row differently if needed */
+.drug-table .table-row:selected {
+    -fx-background-color: #80deea; /* Slightly darker blue background when selected */
+}

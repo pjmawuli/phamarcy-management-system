@@ -6,9 +6,8 @@ import com.lambda.pharmacymangementsystem.model.functions.DrugFunctions;
 import com.lambda.pharmacymangementsystem.model.functions.SupplierFunctions;
 import com.lambda.pharmacymangementsystem.utils.Drug;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +45,11 @@ public class AddDrugController {
         }
     }
 
+    private Stage dialogStage;
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
+
     public void addDrug() {
         try {
             String name = nameField.getText();
@@ -62,10 +66,54 @@ public class AddDrugController {
             if (drugController != null) {
                 drugController.refreshDrugsTable();
             }
-            // Show success message
+
+            showSuccessDialog("Drug added successfully!");
+
+            // Clear all inputs and fields
+            clearInputs();
+
+            // Close the dialog
+            if (dialogStage != null) {
+                dialogStage.close();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             // Show error message
+            showErrorDialog("Please check your input and try again.");
         }
+    }
+
+    private void clearInputs() {
+        nameField.clear();
+        quantityField.clear();
+        priceField.clear();
+        supplierComboBox.getSelectionModel().clearSelection();
+    }
+
+    private void showSuccessDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null); // No header text
+        alert.setContentText(message);
+        alert.getButtonTypes().setAll(ButtonType.OK);
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // Close the dialog when OK is pressed
+                if (dialogStage != null) {
+                    dialogStage.close();
+                }
+            }
+        });
+    }
+
+    private void showErrorDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null); // No header text
+        alert.setContentText(message);
+        alert.getButtonTypes().setAll(ButtonType.OK);
+        alert.showAndWait();
     }
 }

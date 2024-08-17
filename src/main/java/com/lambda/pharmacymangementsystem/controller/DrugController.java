@@ -7,6 +7,8 @@ import com.lambda.pharmacymangementsystem.utils.DataExport;
 import com.lambda.pharmacymangementsystem.utils.TableActionButtons;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,16 +16,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class DrugController {
 
     private final ObservableList<DrugViewEntity> drugs = FXCollections.observableArrayList();
+    private FilteredList<DrugViewEntity> filteredDrugs;
+    private SortedList<DrugViewEntity> sortedDrugs;
+
     @FXML
     public TableColumn<DrugViewEntity, String> nameColumn;
     @FXML
@@ -44,18 +53,21 @@ public class DrugController {
     private TableColumn<DrugViewEntity, Void> actionColumn;
     @FXML
     private Button addButton;
+    @FXML
+    private TextField searchField;
 
-    // Initialization method
+    private List<DrugViewEntity> allDrugs = new ArrayList<>();
+
     @FXML
     private void initialize() {
         ControllerManager.getInstance().setDrugController(this);
         DataExport exportUtils = new DataExport();
         datatable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        // bind tableview to observable list to allow for change listening
+        // Bind tableview to observable list to allow for change listening
         datatable.setItems(drugs);
 
-        // initialize columns
+        // Initialize columns
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         drugCodeColumn.setCellValueFactory(new PropertyValueFactory<>("drugCode"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
@@ -65,26 +77,39 @@ public class DrugController {
         supplierLocationColumn.setCellValueFactory(new PropertyValueFactory<>("supplierLocation"));
 
         // Setup action column using the utility method
-        TableColumn<DrugViewEntity, Void> actionColumn = TableActionButtons.createActionColumn(
+        actionColumn = TableActionButtons.createActionColumn(
                 this::handleEdit,
                 this::handleDelete
         );
+
         datatable.getColumns().add(actionColumn);
 
-        // load data into table view
+        // Initialize FilteredList
+        filteredDrugs = new FilteredList<>(drugs, p -> true);
+        // Initialize SortedList
+        sortedDrugs = new SortedList<>(filteredDrugs);
+        sortedDrugs.comparatorProperty().bind(datatable.comparatorProperty());
+
+        // Add listener to the search field
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> searchDrugs(newValue));
+
+        // Load data into table view
         loadDrugs();
 
-        // bind the action to the add drug button
-//        addButton.setOnAction(actionEvent -> handleAdd());
-
+        // Set default sort
+        nameColumn.setSortType(TableColumn.SortType.ASCENDING);
+        datatable.getSortOrder().add(nameColumn);
     }
 
     public void loadDrugs() {
         try {
             List<DrugViewEntity> drugsList = DrugFunctions.getAllDrugs();
-            if (!drugsList.isEmpty()) {
-                drugs.addAll(drugsList);
+            allDrugs.clear();
+            allDrugs.addAll(drugsList);
+            if (!allDrugs.isEmpty()) {
+                allDrugs.sort(Comparator.comparing(drug -> drug.getName().toLowerCase()));
             }
+            refreshDrugsTable();
         } catch (Exception e) {
             System.out.println("Error loading drugs: " + e.getMessage());
             e.printStackTrace();
@@ -92,16 +117,38 @@ public class DrugController {
     }
 
     public void refreshDrugsTable() {
-        drugs.clear(); // Clear the current list
-        loadDrugs(); // Reload drugs from the database
+        drugs.clear();
+        drugs.addAll(allDrugs);
+        datatable.setItems(drugs);
     }
+
+    private void searchDrugs(String searchTerm) {
+        if (searchTerm == null || searchTerm.isEmpty()) {
+            refreshDrugsTable();
+            return;
+        }
+
+        searchTerm = searchTerm.toLowerCase();
+
+        // Use linear search to find matching drugs
+        List<DrugViewEntity> matchedDrugs = new ArrayList<>();
+        for (DrugViewEntity drug : allDrugs) {
+            if (drug.getName() != null && drug.getName().toLowerCase().startsWith(searchTerm)) {
+                matchedDrugs.add(drug);
+            }
+        }
+
+        // Update the observable list
+        drugs.setAll(matchedDrugs);
+    }
+
 
     @FXML
     private void handleAdd() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/add-drug-view.fxml"));            Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/add-drug-view.fxml"));
+            Parent root = loader.load();
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);// Prevent user from interacting with other windows
             stage.setScene(new Scene(root));
             stage.setAlwaysOnTop(true);
             stage.setTitle("Add Drug");
@@ -109,7 +156,6 @@ public class DrugController {
 
         } catch (IOException e) {
             e.printStackTrace();
-            //
         }
         System.out.println(drugs.get(0).getDrugCode());
     }
@@ -127,7 +173,7 @@ public class DrugController {
             controller.setDrug(selectedDrug);
 
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);// Prevent user from interacting with other windows
+            stage.initModality(Modality.APPLICATION_MODAL); // Prevent user from interacting with other windows
             stage.setScene(new Scene(root));
             stage.setAlwaysOnTop(true);
             stage.setTitle("Update Drug");
@@ -138,16 +184,14 @@ public class DrugController {
         }
     }
 
-private DrugEntity convertToDrugEntity(DrugViewEntity drugViewEntity) {
-    // This method assumes DrugViewEntity and DrugEntity have similar fields.
-    // Implement conversion logic based on your application's requirements.
-    return new DrugEntity(drugViewEntity.getId(), drugViewEntity.getName(), drugViewEntity.getDrugCode(), drugViewEntity.getQuantity(), drugViewEntity.getPrice(), drugViewEntity.getSupplierId(), drugViewEntity.getCreatedAt(), drugViewEntity.getUpdatedAt());
-}
+    private DrugEntity convertToDrugEntity(DrugViewEntity drugViewEntity) {
+        // This method assumes DrugViewEntity and DrugEntity have similar fields.
+        // Implement conversion logic based on your application's requirements.
+        return new DrugEntity(drugViewEntity.getId(), drugViewEntity.getName(), drugViewEntity.getDrugCode(), drugViewEntity.getQuantity(), drugViewEntity.getPrice(), drugViewEntity.getSupplierId(), drugViewEntity.getCreatedAt(), drugViewEntity.getUpdatedAt());
+    }
 
     private void handleDelete(DrugViewEntity drug) {
         // Implement delete logic here
         System.out.println("Deleting drug: " + drug.getName());
     }
-
-
 }

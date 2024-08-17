@@ -36,6 +36,9 @@ public class DrugViewEntity {
         this.supplier_updated_at = supplier_updated_at;
     }
 
+    public DrugViewEntity(String searchTerm) {
+    }
+
     public int getId() {
         return id;
     }
