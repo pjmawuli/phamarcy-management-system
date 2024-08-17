@@ -117,6 +117,7 @@ public class DrugController {
     }
 
     public void refreshDrugsTable() {
+        System.out.println("Hello");
         drugs.clear();
         drugs.addAll(allDrugs);
         datatable.setItems(drugs);
@@ -149,8 +150,9 @@ public class DrugController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lambda/pharmacymangementsystem/view/add-drug-view.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL); // Prevent user from interacting with other windows
             stage.setScene(new Scene(root));
-            stage.setAlwaysOnTop(true);
+            stage.setAlwaysOnTop(false);
             stage.setTitle("Add Drug");
             stage.showAndWait();
 
@@ -158,6 +160,8 @@ public class DrugController {
             e.printStackTrace();
         }
         System.out.println(drugs.get(0).getDrugCode());
+        loadDrugs();
+        refreshDrugsTable();
     }
 
     @FXML
@@ -181,6 +185,8 @@ public class DrugController {
         } catch (IOException e) {
             e.printStackTrace();
             // Handle exception (e.g., show an error dialog)
+            loadDrugs();
+            refreshDrugsTable();
         }
     }
 
